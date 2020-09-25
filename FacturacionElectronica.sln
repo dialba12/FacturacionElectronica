@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.UI",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.Modelos", "FacturacionElectronica.Modelos\FacturacionElectronica.Modelos.csproj", "{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.BL", "FacturacionElectronica.BL\FacturacionElectronica.BL.csproj", "{AA87231C-09F5-4447-BA4D-41314FB52208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.DA", "FacturacionElectronica.DA\FacturacionElectronica.DA.csproj", "{F10DF54C-B674-41A3-9904-D2FB994C294E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA87231C-09F5-4447-BA4D-41314FB52208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA87231C-09F5-4447-BA4D-41314FB52208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA87231C-09F5-4447-BA4D-41314FB52208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA87231C-09F5-4447-BA4D-41314FB52208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10DF54C-B674-41A3-9904-D2FB994C294E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10DF54C-B674-41A3-9904-D2FB994C294E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10DF54C-B674-41A3-9904-D2FB994C294E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10DF54C-B674-41A3-9904-D2FB994C294E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
