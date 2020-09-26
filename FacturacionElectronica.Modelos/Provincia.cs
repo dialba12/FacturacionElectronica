@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class Provincia
+    public class Provincia
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
+        public int Id_Provincia { get; set; }
+        public string NombreProvincia { get; set; }
     }
 }

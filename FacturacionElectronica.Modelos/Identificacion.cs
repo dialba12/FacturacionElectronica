@@ -4,7 +4,11 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class Identificacion
+    public class Identificacion
     {
+        public int Id_Identificacion { get; set; }
+        public TipoDeIdentificacion Tipo { get; set; }
+        public int Integer { get; set; }
+
     }
 }

@@ -4,10 +4,10 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class Telefono
+    public class Telefono
     {
 
-        public int Id { get; set; }
+        public int Id_Telefono { get; set; }
         public int CodigoDePais { get; set; }
         public int Numero { get; set; }
     }

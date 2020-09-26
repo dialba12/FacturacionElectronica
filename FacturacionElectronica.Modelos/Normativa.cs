@@ -4,7 +4,9 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class Normativa
+    public class Normativa
     {
+        public int NumeroResolucion { get; set; }
+        public DateTime FechaEmision { get; set; }
     }
 }

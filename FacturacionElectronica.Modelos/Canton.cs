@@ -4,10 +4,10 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class Canton
+    public class Canton
     {
-        public int Id { get; set; }
-        public int IdProvincia { get; set; }
-        public int Nombre { get; set; }
+        public int Id_Canton { get; set; }
+        public int Id_Provincia { get; set; }
+        public int NombreProvincia { get; set; }
     }
 }
