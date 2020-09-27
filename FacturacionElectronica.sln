@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.UI", "FacturacionElectronica.UI\FacturacionElectronica.UI.csproj", "{ABDFF774-492B-4D9C-91A0-F0E9F8E24B19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionElectronica.UI", "FacturacionElectronica.UI\FacturacionElectronica.UI.csproj", "{ABDFF774-492B-4D9C-91A0-F0E9F8E24B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.Modelos", "FacturacionElectronica.Modelos\FacturacionElectronica.Modelos.csproj", "{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionElectronica.Modelos", "FacturacionElectronica.Modelos\FacturacionElectronica.Modelos.csproj", "{E7F77C9E-986B-4786-BD55-3BC20CD87ED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.BL", "FacturacionElectronica.BL\FacturacionElectronica.BL.csproj", "{AA87231C-09F5-4447-BA4D-41314FB52208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionElectronica.BL", "FacturacionElectronica.BL\FacturacionElectronica.BL.csproj", "{AA87231C-09F5-4447-BA4D-41314FB52208}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacturacionElectronica.DA", "FacturacionElectronica.DA\FacturacionElectronica.DA.csproj", "{F10DF54C-B674-41A3-9904-D2FB994C294E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacturacionElectronica.DA", "FacturacionElectronica.DA\FacturacionElectronica.DA.csproj", "{F10DF54C-B674-41A3-9904-D2FB994C294E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

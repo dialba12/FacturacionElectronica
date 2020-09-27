@@ -49,7 +49,7 @@ namespace FacturacionElectronica.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Facturacion}/{action=Listar}/{id?}");
 
                 endpoints.MapRazorPages();
             });

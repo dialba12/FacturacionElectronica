@@ -20,7 +20,7 @@ namespace FacturacionElectronica.UI.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("ContextoBaseDeDatosConnection")));
 
-                services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = false)
                     .AddEntityFrameworkStores<ContextoBaseDeDatos>();
             });
         }

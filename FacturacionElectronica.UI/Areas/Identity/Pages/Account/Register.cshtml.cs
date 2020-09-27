@@ -46,6 +46,22 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [Required(ErrorMessage = "Ingrese el nombre")]
+            [DataType(DataType.Text)]
+            [Display(Name = "Nombre")]
+            public string Nombre { get; set; }
+
+            [Required(ErrorMessage = "Ingrese el primer apellido")]
+            [DataType(DataType.Text)]
+            [Display(Name = "Primer Apellido")]
+            public string PrimerApellido { get; set; }
+
+            [Required(ErrorMessage ="Ingrese el segundo apellido")]
+            [DataType(DataType.Text)]
+            [Display(Name = "Segundo Apellido")]
+            public string SegundoApellido { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -54,12 +70,12 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar contraseña")]
+            [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -75,7 +91,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Usuario { UserName = Input.Email, Email = Input.Email };
+                var user = new Usuario { Nombre = Input.Nombre, PrimerApellido = Input.PrimerApellido, SegundoApellido = Input.SegundoApellido, UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
