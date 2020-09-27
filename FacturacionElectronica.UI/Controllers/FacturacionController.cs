@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FacturacionElectronica.UI.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FacturacionElectronica.UI.Controllers
@@ -11,8 +13,25 @@ namespace FacturacionElectronica.UI.Controllers
     [Authorize]
     public class FacturacionController : Controller
     {
-        public ActionResult Listar()
+
+        private readonly UserManager<Usuario> UserManager;
+        private readonly RoleManager<IdentityRole> RoleManager;
+
+        public FacturacionController(UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager)
         {
+            this.UserManager = userManager;
+            this.RoleManager = roleManager;
+        }
+
+
+        public async Task<ActionResult> Listar()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await RoleManager.CreateAsync(new IdentityRole("Administrador"));
+                var Usuario = await UserManager.GetUserAsync(HttpContext.User);
+                await UserManager.AddToRoleAsync(Usuario, "Administrador");
+            }
             return View();
         }
 

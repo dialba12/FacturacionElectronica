@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FacturacionElectronica.UI.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FacturacionElectronica.UI.Controllers
@@ -11,8 +13,8 @@ namespace FacturacionElectronica.UI.Controllers
     [Authorize]
     public class ConfiguracionController : Controller
     {
-        // GET: ConfiguracionesController
-        public ActionResult Index()
+
+        public async Task<ActionResult> Listar()
         {
             return View();
         }
