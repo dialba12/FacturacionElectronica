@@ -9,12 +9,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="arriba navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1" style="text-align:center; justify-content:center; float:none">
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Facturacion" asp-action="Listar">Facturación</a>
+                            <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Facturacion" asp-action="Listar">Facturar</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Inventario" asp-action="Index">Inventario</a>
@@ -28,9 +28,8 @@
                         <li class="nav-item">
                             <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Usuario" asp-action="Listar">Usuarios</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Configuracion" asp-action="Listar">Configuraciones</a>
-                        </li>
+                        
+
                         <li class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                             <partial name="_LoginPartial.cshtml" />
                         </li>
@@ -44,6 +43,28 @@
             @RenderBody()
         </main>
     </div>
+
+
+
+
+    <footer>
+        <nav class="abajo navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="align-items: initial">
+            <div class="container">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1" style="text-align:center; justify-content:center; float:none">
+                        <li class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                            <partial name="_LoginPartial2.cshtml" />
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-dark btn-lg" asp-area="" asp-controller="Facturacion" asp-action="Listar">Acerca de</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

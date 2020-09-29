@@ -6,39 +6,31 @@
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
 
+<link rel="stylesheet" href="~/css/site.css" />
 <h1></h1>
-<section>
-    <form id="account" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Input.Email"></label>
-            <input asp-for="Input.Email" class="form-control" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Input.Password"></label>
-            <input asp-for="Input.Password" class="form-control" />
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <div class="checkbox">
-                <label asp-for="Input.RememberMe">
-                    <input asp-for="Input.RememberMe" />
-                    @Html.DisplayNameFor(m => m.Input.RememberMe)
-                </label>
+<center>
+    <section>
+        <form id="account" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email" class="textoLogin">Correo Electrónico</label>
+                <input asp-for="Input.Email" class="form-control mensajeentrada" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-        </div>
-        <div class="form-group">
-            <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">¿Olvidaste tu contraseña?</a>
-            </p>
-        </div>
-    </form>
-</section>
+            <br />
+            <div class="form-group">
+                <label asp-for="Input.Password" class="textoLogin"></label>
+                <input asp-for="Input.Password" class="form-control mensajeentrada" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <button type="submit" class="botoninicio">Iniciar Sesión</button>
+            </div>
 
+        </form>
+    </section>
+</center>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

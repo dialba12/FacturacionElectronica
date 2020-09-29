@@ -12,28 +12,23 @@ a {
     color: #0366d6;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
 
-.navbar a {
+.pie {
     font-family: Montserrat;
     font-style: normal;
     font-size: 20px;
-    color: #BFEFF7;
+    color: #B8240A;
     font-weight: bold;
     width: auto;
     text-align: center;
     display: flex;
-    background: #B8240A;
+    background: #BFEFF7;
     border: 2px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 10px;
 }
 
-    .navbar a:hover {
+    .pie:hover {
         font-family: Montserrat;
         font-style: normal;
         font-size: 20px;
@@ -51,38 +46,6 @@ a {
     }
 
 
-.navbar button {
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 20px;
-    color: #BFEFF7;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background: #B8240A;
-    border: 1px solid #000000;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 10px;
-    font-weight: bold;
-    width: auto;
-}
-
-    .navbar button:hover {
-        font-family: Montserrat;
-        font-style: normal;
-        font-size: 20px;
-        text-decoration-color: #BFEFF7;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        background: #474B4E;
-        border: 1px solid #000000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        color: #BFEFF7;
-        margin: 11px;
-        font-weight: bold;
-        width: auto;
-    }
 
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -157,37 +120,4 @@ body {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
     align-items: flex-start;
-}
-
-.mensajeentrada {
-    background-color: #D6F5FA;
-    border: 2px solid #B8240A;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
-}
-
-    .textoLogin {
-        color: #B8240A;
-        font-family: Montserrat;
-        font-style: normal;
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-
-
-.botoninicio {
-    background: #B8240A;
-    border-radius: 10px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-size: 22px;
-    display: flex;
-    box-sizing: border-box;
-    color: #FEFDFB;
-    text-align: center;
-    align-content: center;
 }
