@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -43,13 +43,13 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name ="Correo electrónico")]
+            [Required(ErrorMessage = "Ingrese un Correo Electrónico")]
+            [Display(Name = "Correo Electrónico")]
+            [EmailAddress(ErrorMessage = "Ingrese un Correo Electrónico válido")]
             public string Email { get; set; }
-
-            [Required]
-            [Display(Name ="Contraseña")]
+           
+            [Required(ErrorMessage = "Ingrese una Clave")]
+            [Display(Name = "Clave")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 

@@ -47,35 +47,40 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required(ErrorMessage = "Ingrese el nombre")]
-            [DataType(DataType.Text)]
+            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Nombre")]
+            [DataType(DataType.Text)]
             public string Nombre { get; set; }
 
-            [Required(ErrorMessage = "Ingrese el primer apellido")]
+            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
+            [Display(Name = "Primer apellido")]
             [DataType(DataType.Text)]
-            [Display(Name = "Primer Apellido")]
             public string PrimerApellido { get; set; }
 
-            [Required(ErrorMessage ="Ingrese el segundo apellido")]
+            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
+            [Display(Name = "Segundo apellido")]
             [DataType(DataType.Text)]
-            [Display(Name = "Segundo Apellido")]
             public string SegundoApellido { get; set; }
 
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage = "Ingrese un Correo Electrónico")]
+            [Display(Name = "Correo Electrónico")]
+            [EmailAddress(ErrorMessage = "Ingrese un Correo Electrónico válido")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Ingrese una Clave")]
+            [Display(Name = "Clave")]
+            [RegularExpression(@"^((?=.*[a-z])(?=.*\d)(?=.*\w)).+$", ErrorMessage = "La Contraseña debe tener al menos una letra y un número")]
+            [StringLength(100, ErrorMessage = "La Clave debe ser de mínimo 6 dígitos", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Ingrese la Clave para Confirmar")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmar contraseña")]
-            [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
+            [Display(Name = "Confirmar la Clave")]
+            [Compare("Password", ErrorMessage = "Las Contraseñas no coinciden")]
             public string ConfirmPassword { get; set; }
         }
 
