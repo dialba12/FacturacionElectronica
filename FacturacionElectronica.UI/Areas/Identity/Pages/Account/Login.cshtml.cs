@@ -43,12 +43,12 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Ingrese un Correo Electrónico")]
+            [Required(ErrorMessage = "Ingrese un correo electrónico")]
             [Display(Name = "Correo Electrónico")]
-            [EmailAddress(ErrorMessage = "Ingrese un Correo Electrónico válido")]
+            [EmailAddress(ErrorMessage = "Ingrese un correo electrónico válido")]
             public string Email { get; set; }
            
-            [Required(ErrorMessage = "Ingrese una Clave")]
+            [Required(ErrorMessage = "Ingrese una clave")]
             [Display(Name = "Clave")]
             [DataType(DataType.Password)]
             public string Password { get; set; }

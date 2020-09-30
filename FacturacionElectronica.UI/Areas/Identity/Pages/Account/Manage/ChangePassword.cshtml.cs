@@ -34,20 +34,22 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Ingrese la contraseña actual")]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña actual.")]
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [RegularExpression(@"^((?=.*[a-z])(?=.*\d)(?=.*\w)).+$", ErrorMessage = "La Contraseña debe tener al menos una letra y un número")]
+            [StringLength(100, ErrorMessage = "La Clave debe ser de mínimo 6 dígitos", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Nueva contraseña.")]
+            [Display(Name = "Nueva contraseña")]
+            [Required(ErrorMessage = "Ingrese una Clave")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirme la contraseña.")]
+            [Display(Name = "Confirme la contraseña")]
             [Compare("NewPassword", ErrorMessage = "Las contraseñas no coinciden.")]
+            [Required(ErrorMessage = "Confirme la nueva la contraseña")]
             public string ConfirmPassword { get; set; }
         }
 

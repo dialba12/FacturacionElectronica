@@ -22,7 +22,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        [Display(Name = "Usuario")]
         public string Username { get; set; }
 
         [TempData]
@@ -89,7 +89,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "su perfil ha sido actualizado";
             return RedirectToPage();
         }
     }

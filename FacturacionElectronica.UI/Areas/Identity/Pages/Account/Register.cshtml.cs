@@ -47,25 +47,25 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         public class InputModel
         {
 
-            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [Required(ErrorMessage = "Ingrese un nombre")]
             [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Nombre")]
             [DataType(DataType.Text)]
             public string Nombre { get; set; }
 
-            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [Required(ErrorMessage = "Ingrese un nombre")]
             [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Primer apellido")]
             [DataType(DataType.Text)]
             public string PrimerApellido { get; set; }
 
-            [Required(ErrorMessage = "Ingrese un Nombre")]
+            [Required(ErrorMessage = "Ingrese un nombre")]
             [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Segundo apellido")]
             [DataType(DataType.Text)]
             public string SegundoApellido { get; set; }
 
-            [Required(ErrorMessage = "Ingrese un Correo Electrónico")]
+            [Required(ErrorMessage = "Ingrese un correo electrónico")]
             [Display(Name = "Correo Electrónico")]
             [EmailAddress(ErrorMessage = "Ingrese un Correo Electrónico válido")]
             public string Email { get; set; }
@@ -77,7 +77,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Required(ErrorMessage = "Ingrese la Clave para Confirmar")]
+            [Required(ErrorMessage = "Ingrese la clave para confirmar")]
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar la Clave")]
             [Compare("Password", ErrorMessage = "Las Contraseñas no coinciden")]
@@ -100,7 +100,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Crear una nueva cuenta con contraseña.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -110,7 +110,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirme su correo",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
