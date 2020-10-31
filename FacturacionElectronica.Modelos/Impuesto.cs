@@ -11,6 +11,6 @@ namespace FacturacionElectronica.Modelos
         public double Tarifa { get; set; }
         public double FactorIVA { get; set; }
         public double Monto { get; set; }
-        public int Id_Exoneracion { get; set; }
+        public int idExoneracion { get; set; }
     }
 }

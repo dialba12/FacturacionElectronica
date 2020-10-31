@@ -6,7 +6,7 @@ namespace FacturacionElectronica.Modelos
 {
     public class CodigoComercial
     {
-        public int Codigo_Comercial { get; set; }
+        public int CodigooComercial { get; set; }
         public TipoCodigoComercial Tipo { get; set; }//Hacer enu
 
     }

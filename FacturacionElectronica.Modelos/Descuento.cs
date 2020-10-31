@@ -6,8 +6,8 @@ namespace FacturacionElectronica.Modelos
 {
     public class Descuento
     {
-        public int Id_Descuento { get; set; }
-        public double Monto_Descuento { get; set; }
+        public int idDescuento { get; set; }
+        public double MontoDescuento { get; set; }
         public string NaturalezaDesc { get; set; }
     }
 }

@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FacturacionElectronica.DA
 {
-   public class ContextoDeBaseDeDatos: DbContext
+    public class ContextoDeBaseDeDatos : DbContext
     {
         public ContextoDeBaseDeDatos(DbContextOptions<ContextoDeBaseDeDatos> opciones) : base(opciones)
-        {
-
-        }
+        { }
+                      public DbSet<Cliente> Cliente { get; set; }
     }
-}
+    }
+
+
