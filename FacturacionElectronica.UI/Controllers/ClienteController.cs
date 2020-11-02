@@ -1,20 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using FacturacionElectronica.BL;
+using FacturacionElectronica.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FacturacionElectronica.UI.Controllers
 {
     [Authorize]
     public class ClienteController : Controller
     {
+        private readonly IRepositorioFacturacion Repositorio;
 
-        public ActionResult Index()
+        public ClienteController(IRepositorioFacturacion repositorio)
         {
-            return View();
+            Repositorio = repositorio;
+        }
+
+        public ActionResult Listar()
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientes();
+
+            return View(ListaDeClientes);
         }
 
         // GET: ClientesController/Details/5

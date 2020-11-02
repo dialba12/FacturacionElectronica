@@ -8,5 +8,6 @@ namespace FacturacionElectronica.BL
     public interface IRepositorioFacturacion
     {
         public void AgregarCliente(Cliente cliente);
+        public List<Cliente> ObtenerClientes();
     }
 }

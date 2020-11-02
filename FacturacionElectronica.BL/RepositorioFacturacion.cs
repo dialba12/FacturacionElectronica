@@ -2,6 +2,7 @@
 using FacturacionElectronica.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FacturacionElectronica.BL
@@ -20,6 +21,13 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Cliente.Add(cliente);
             elContextoDeBaseDeDatos.SaveChanges();
            
+        }
+        public List<Cliente> ObtenerClientes()
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = elContextoDeBaseDeDatos.Cliente.ToList();
+
+            return ListaDeClientes;
         }
     }
 }

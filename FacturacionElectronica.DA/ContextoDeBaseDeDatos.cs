@@ -12,7 +12,8 @@ namespace FacturacionElectronica.DA
     {
         public ContextoDeBaseDeDatos(DbContextOptions<ContextoDeBaseDeDatos> opciones) : base(opciones)
         { }
-                      public DbSet<Cliente> Cliente { get; set; }
+        
+        public DbSet<Cliente> Cliente { get; set; }
     }
     }
 
