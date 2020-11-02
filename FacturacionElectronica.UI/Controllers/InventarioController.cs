@@ -68,20 +68,29 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: InventarioController/Delete/5
-        public ActionResult Delete(int id)
+
+        public ActionResult Eliminar(int id)
+
         {
-            return View();
+           Inventario inventario;
+            inventario = Repositorio.ObtenerInventarioPorId(id);
+
+            return View(inventario);
         }
 
-        // POST: InventarioController/Delete/5
+        // POST: ClientesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Eliminar(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Inventario inventario;
+                inventario = Repositorio.ObtenerInventarioPorId(id);
+
+
+                Repositorio.EliminarInventario(inventario);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {

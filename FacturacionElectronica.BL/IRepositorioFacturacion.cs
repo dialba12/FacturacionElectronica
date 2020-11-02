@@ -12,16 +12,20 @@ namespace FacturacionElectronica.BL
         public Cliente ObtenerClientePorId(int id);
         public void ModificarCliente(int id, Cliente cliente);
 
+        public void EliminarCliente(Cliente id);
+
 
         public void AgregarCierre(Cierre cierre);
         public List<Cierre> ObtenerCierre();
         public Cierre ObtenerCierrePorId(int id);
         public void ModificarCierre(int id, Cierre cierre);
+        public void EliminarCierre(Cierre id);
 
         public void AgregarInventario(Inventario inventario);
         public List<Inventario> ObtenerInventario();
         public Inventario ObtenerInventarioPorId(int id);
         public void ModificarInventario(int id, Inventario inventario);
+        public void EliminarInventario(Inventario id);
 
     }
 }

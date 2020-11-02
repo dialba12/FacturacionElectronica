@@ -109,19 +109,26 @@ namespace FacturacionElectronica.UI.Controllers
        
 
         // GET: ClientesController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Eliminar(int id)
+
         {
-            return View();
+            Cliente cliente;
+            cliente = Repositorio.ObtenerClientePorId(id);
+
+            return View(cliente);
         }
 
         // POST: ClientesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Eliminar(int id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Cliente cliente = Repositorio.ObtenerClientePorId(id);
+
+                Repositorio.EliminarCliente(cliente);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {

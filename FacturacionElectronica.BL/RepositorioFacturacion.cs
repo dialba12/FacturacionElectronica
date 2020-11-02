@@ -55,6 +55,23 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
+        public void EliminarCliente(Cliente cliente)
+        {
+            elContextoDeBaseDeDatos.Cliente.Remove(cliente);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         public void AgregarCierre(Cierre cierre)
         {
             elContextoDeBaseDeDatos.Cierre.Add(cierre);
@@ -80,6 +97,16 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Cierre.Update(cierrePorModificar) ;
             elContextoDeBaseDeDatos.SaveChanges();
         }
+
+        public void EliminarCierre(Cierre cierre)
+        {
+            elContextoDeBaseDeDatos.Cierre.Remove(cierre);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+
+
+
 
         public void AgregarInventario(Inventario inventario)
         {
@@ -109,6 +136,12 @@ namespace FacturacionElectronica.BL
             productoPorModificar.Existencia = inventario.Existencia;
 
             elContextoDeBaseDeDatos.Inventario.Update(productoPorModificar);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+        public void EliminarInventario(Inventario inventario)
+        {
+            elContextoDeBaseDeDatos.Inventario.Remove(inventario);
             elContextoDeBaseDeDatos.SaveChanges();
         }
     }
