@@ -1,0 +1,54 @@
+﻿@model IEnumerable<FacturacionElectronica.Modelos.Inventario>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+<h1>Módulo de inventario</h1>
+
+<p>
+    <a asp-action="Agregar">Añadir</a>
+    <input class="form-control" />
+    <a asp-action="Agregar">Consultar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioCosto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioCosto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "Details", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

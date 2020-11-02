@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FacturacionElectronica.BL;
+using FacturacionElectronica.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,32 +13,32 @@ namespace FacturacionElectronica.UI.Controllers
     [Authorize]
     public class InventarioController : Controller
     {
-        // GET: InventarioController
-        public ActionResult Index()
+        private readonly IRepositorioFacturacion Repositorio;
+
+        public InventarioController(IRepositorioFacturacion repositorio)
+        {
+            Repositorio = repositorio;
+        }
+
+        public ActionResult Listar()
+        {
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+            return View(ListaDeInventario);
+        }
+        
+        public ActionResult Agregar()
         {
             return View();
         }
-
-        // GET: InventarioController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: InventarioController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: InventarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Agregar(Inventario inventario)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Repositorio.AgregarInventario(inventario);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {
@@ -44,20 +46,21 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: InventarioController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
-        }
+            Inventario producto;
+            producto = Repositorio.ObtenerInventarioPorId(id);
 
-        // POST: InventarioController/Edit/5
+            return View(producto);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Inventario inventario)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Repositorio.ModificarInventario(id, inventario);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {

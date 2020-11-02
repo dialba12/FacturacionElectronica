@@ -15,6 +15,7 @@ namespace FacturacionElectronica.DA
         
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Cierre> Cierre { get; set; }
+        public DbSet<Inventario> Inventario { get; set; }
     }
     }
 

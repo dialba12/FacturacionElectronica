@@ -80,5 +80,36 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Cierre.Update(cierrePorModificar) ;
             elContextoDeBaseDeDatos.SaveChanges();
         }
+
+        public void AgregarInventario(Inventario inventario)
+        {
+            elContextoDeBaseDeDatos.Inventario.Add(inventario);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+        public List<Inventario> ObtenerInventario()
+        {
+            List<Inventario> ListaDeProductosYServicios;
+            ListaDeProductosYServicios = elContextoDeBaseDeDatos.Inventario.ToList();
+
+            return ListaDeProductosYServicios;
+        }
+        public Inventario ObtenerInventarioPorId(int id)
+        {
+            Inventario inventario;
+            inventario = elContextoDeBaseDeDatos.Inventario.Find(id);
+            return inventario;
+        }
+        public void ModificarInventario(int id, Inventario inventario)
+        {
+            Inventario productoPorModificar = ObtenerInventarioPorId(id);
+            productoPorModificar.Codigo = inventario.Codigo;
+            productoPorModificar.Descripcion = inventario.Descripcion;
+            productoPorModificar.PrecioCosto = inventario.PrecioCosto;
+            productoPorModificar.PrecioVenta = inventario.PrecioVenta;
+            productoPorModificar.Existencia = inventario.Existencia;
+
+            elContextoDeBaseDeDatos.Inventario.Update(productoPorModificar);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
     }
 }

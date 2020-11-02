@@ -18,5 +18,10 @@ namespace FacturacionElectronica.BL
         public Cierre ObtenerCierrePorId(int id);
         public void ModificarCierre(int id, Cierre cierre);
 
+        public void AgregarInventario(Inventario inventario);
+        public List<Inventario> ObtenerInventario();
+        public Inventario ObtenerInventarioPorId(int id);
+        public void ModificarInventario(int id, Inventario inventario);
+
     }
 }
