@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FacturacionElectronica.BL;
+using FacturacionElectronica.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,32 +13,35 @@ namespace FacturacionElectronica.UI.Controllers
     [Authorize]
     public class ReporteController : Controller
     {
-        // GET: ReportesController
-        public ActionResult Index()
+        private readonly IRepositorioFacturacion Repositorio;
+
+        public ReporteController(IRepositorioFacturacion repositorio)
+        {
+            Repositorio = repositorio;
+        }
+        public ActionResult Listar()
+        {
+            List<Cierre> ListaDeCierres;
+            ListaDeCierres = Repositorio.ObtenerCierre();
+            return View(ListaDeCierres);
+        }
+        public ActionResult Agregar()
         {
             return View();
         }
-
-        // GET: ReportesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ReportesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ReportesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Agregar(Cierre cierre)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                string nombreUsuario = User.Identity.Name;
+                cierre.NombreUsuario = nombreUsuario;
+                cierre.Fecha = DateTime.Now;
+
+                Repositorio.AgregarCierre(cierre);
+
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {
@@ -44,20 +49,23 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: ReportesController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Modificar(int id)
         {
-            return View();
+            Cierre cierre;
+            cierre = Repositorio.ObtenerCierrePorId(id);
+
+            return View(cierre);
         }
 
         // POST: ReportesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Modificar(int id, Cierre cierre)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Repositorio.ModificarCierre(id, cierre);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {

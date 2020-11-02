@@ -9,6 +9,7 @@ using FacturacionElectronica.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 
 namespace FacturacionElectronica.UI.Controllers
@@ -31,26 +32,21 @@ namespace FacturacionElectronica.UI.Controllers
             return View(ListaDeClientes);
         }
 
-        // GET: ClientesController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Agregar()
         {
             return View();
         }
 
-        // GET: ClientesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ClientesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Agregar(Cliente cliente)
         {
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                Repositorio.AgregarCliente(cliente);
+
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {
@@ -58,26 +54,59 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: ClientesController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Modificar(int id)
         {
-            return View();
+            Cliente cliente;
+            cliente = Repositorio.ObtenerClientePorId(id);
+
+            return View(cliente);
         }
 
-        // POST: ClientesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Modificar(int id, Cliente cliente)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Repositorio.ModificarCliente(id, cliente);
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {
                 return View();
             }
         }
+
+
+        public List<SelectListItem> ObtenerTipoDeCedula()
+        {
+            return new List<SelectListItem>()
+            {
+                 new SelectListItem()
+                {
+                    Text = "Cédula física.",
+                     Value = "1"
+                },
+                new SelectListItem()
+                {
+                    Text = "Cédula jurídica.",
+                    Value = "2"
+                },
+                new SelectListItem()
+                {
+                   Text = "DIMEX.",
+                   Value = "3"
+                },
+                new SelectListItem()
+                {
+                   Text = "NITE",
+                   Value = "4"
+                }
+            };
+       }
+        
+        
+       
 
         // GET: ClientesController/Delete/5
         public ActionResult Delete(int id)

@@ -9,5 +9,14 @@ namespace FacturacionElectronica.BL
     {
         public void AgregarCliente(Cliente cliente);
         public List<Cliente> ObtenerClientes();
+        public Cliente ObtenerClientePorId(int id);
+        public void ModificarCliente(int id, Cliente cliente);
+
+
+        public void AgregarCierre(Cierre cierre);
+        public List<Cierre> ObtenerCierre();
+        public Cierre ObtenerCierrePorId(int id);
+        public void ModificarCierre(int id, Cierre cierre);
+
     }
 }

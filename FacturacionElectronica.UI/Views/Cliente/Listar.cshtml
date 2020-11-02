@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<FacturacionElectronica.Modelos.Cliente>
 
 @{
-    ViewData["Title"] = "Listar";
+    ViewData["Title"] = "Lista de clientes";
 }
 
-<h1>Listar</h1>
+<h1>Módulo de clientes</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Agregar">Añadir</a>
+    <input  class="form-control" />
+    <a asp-action="Agregar">Consultar</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -38,9 +41,8 @@
                 @Html.DisplayFor(modelItem => item.SegundoApellido)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Modificar", "Modificar", new { id=item.idCliente}) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id=item.idCliente })
             </td>
         </tr>
 }

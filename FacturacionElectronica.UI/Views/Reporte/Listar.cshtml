@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FacturacionElectronica.Modelos.Cierre>
+
+@{
+    ViewData["Title"] = "Lista de reportes";
+}
+
+<h1>Módulo de reportes</h1>
+
+<p>
+    <a asp-action="Agregar">Añadir</a>
+    <input class="form-control"/>
+    <a asp-action="Agregar">Consultar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                <label>Acciones</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            <td>
+                @Html.ActionLink("Modificar", "Modificar", new { id=item.Numero}) |
+                @Html.ActionLink("Eliminar", "Details", new { id=item.Numero })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
