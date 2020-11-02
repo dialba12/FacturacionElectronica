@@ -8,6 +8,7 @@ namespace FacturacionElectronica.Modelos
     public class Inventario
     {
         [Key]
+        public int idInventario { get; set; }
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
         public double PrecioCosto { get; set; }
