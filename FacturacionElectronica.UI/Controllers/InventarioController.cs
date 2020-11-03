@@ -46,7 +46,7 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Modificar(int id)
         {
             Inventario producto;
             producto = Repositorio.ObtenerInventarioPorId(id);
@@ -55,7 +55,7 @@ namespace FacturacionElectronica.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Inventario inventario)
+        public ActionResult Modificar(int id, Inventario inventario)
         {
             try
             {
@@ -68,6 +68,31 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
+        public ActionResult Consultar(int codigo)
+
+        {
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventarioPorCodigo(codigo);
+
+            Inventario inventario;
+
+
+            if (ListaDeInventario.Count.Equals(0))
+            {
+                return RedirectToAction("NoExiste", "Inventario");
+            }
+            else
+            {
+                inventario = ListaDeInventario.First();
+            }
+            return View(inventario);
+        }
+
+        public ActionResult NoExiste(int id)
+
+        {
+            return View();
+        }
 
         public ActionResult Eliminar(int id)
 

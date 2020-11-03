@@ -104,7 +104,36 @@ namespace FacturacionElectronica.UI.Controllers
                 }
             };
        }
-        
+
+
+        public ActionResult Consultar(int id)
+
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientePorIdentificacion(id);
+
+            Cliente cliente;
+
+
+            if (ListaDeClientes.Count.Equals(0))
+            {
+                return RedirectToAction("NoExiste", "Cliente");
+            }
+            else
+            {
+                cliente = ListaDeClientes.First();
+            }
+            return View(cliente);
+        }
+
+        public ActionResult NoExiste(int id)
+
+        {
+
+            return View();
+        }
+
+
         public ActionResult Eliminar(int id)
 
         {

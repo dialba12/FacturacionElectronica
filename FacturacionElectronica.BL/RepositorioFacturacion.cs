@@ -36,6 +36,14 @@ namespace FacturacionElectronica.BL
             cliente = elContextoDeBaseDeDatos.Cliente.Find(id);
             return cliente;
         }
+        public List<Cliente> ObtenerClientePorIdentificacion(int identificacion)
+        {
+            var resultado = from listaClientes in elContextoDeBaseDeDatos.Cliente
+                            where listaClientes.Identificacion == identificacion
+                            select listaClientes;
+            return resultado.ToList();
+        }
+
         public void ModificarCliente(int id, Cliente cliente)
         {
             Cliente ClientePorModificar = ObtenerClientePorId(id);
@@ -129,7 +137,16 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-        
+        public List<Inventario> ObtenerInventarioPorCodigo(int codigo)
+        {
+            var resultado = from listaInventario in elContextoDeBaseDeDatos.Inventario
+                            where listaInventario.Codigo == codigo
+                            select listaInventario;
+            return resultado.ToList();
+        }
 
     }
+
+
+
 }

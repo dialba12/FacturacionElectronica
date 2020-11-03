@@ -10,6 +10,7 @@ namespace FacturacionElectronica.BL
         public void AgregarCliente(Cliente cliente);
         public List<Cliente> ObtenerClientes();
         public Cliente ObtenerClientePorId(int id);
+        public List<Cliente> ObtenerClientePorIdentificacion(int identificacion);
         public void ModificarCliente(int id, Cliente cliente);
 
         public void EliminarCliente(Cliente id);
@@ -26,6 +27,7 @@ namespace FacturacionElectronica.BL
         public Inventario ObtenerInventarioPorId(int id);
         public void ModificarInventario(int id, Inventario inventario);
         public void EliminarInventario(Inventario id);
+        public List<Inventario> ObtenerInventarioPorCodigo(int codigo);
 
     }
 }
