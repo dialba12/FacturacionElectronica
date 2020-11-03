@@ -103,7 +103,10 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Data.Usuario { Nombre = Input.Nombre, PrimerApellido = Input.PrimerApellido, SegundoApellido = Input.SegundoApellido, UserName = Input.Email, Email = Input.Email };
+                var user = new Data.Usuario { Nombre = Input.Nombre, PrimerApellido = Input.PrimerApellido, 
+                    SegundoApellido = Input.SegundoApellido, UserName = Input.Email, Email = Input.Email,
+                    TipoDeIdentificacion = Input.TipoDeIdentificacion, Identificacion = Input.Identificacion,
+                    Provincia = Input.Provincia, Canton = Input.Canton, Distrito = Input.Distrito, OtrasSenas = Input.OtrasSenas};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
