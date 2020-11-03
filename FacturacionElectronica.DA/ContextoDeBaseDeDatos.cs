@@ -10,6 +10,7 @@ namespace FacturacionElectronica.DA
 {
     public class ContextoDeBaseDeDatos : DbContext
     {
+        public ContextoDeBaseDeDatos() { }
         public ContextoDeBaseDeDatos(DbContextOptions<ContextoDeBaseDeDatos> opciones) : base(opciones)
         { }
         
