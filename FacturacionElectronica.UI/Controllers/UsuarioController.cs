@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FacturacionElectronica.Modelos;
 using FacturacionElectronica.UI.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +14,13 @@ namespace FacturacionElectronica.UI.Controllers
     [Authorize]
     public class UsuarioController : Controller
     {
-        private readonly UserManager<Usuario> UserManager;
+        private readonly UserManager<Areas.Identity.Data.Usuario> UserManager;
+        private readonly IPasswordHasher<Areas.Identity.Data.Usuario> PasswordHasher;
 
-        public UsuarioController(UserManager<Usuario> user)
+        public UsuarioController(UserManager<Areas.Identity.Data.Usuario> user, IPasswordHasher<Areas.Identity.Data.Usuario> passwordHasher)
         {
             UserManager = user;
+            PasswordHasher = passwordHasher;
         }
 
         
@@ -27,26 +30,36 @@ namespace FacturacionElectronica.UI.Controllers
             return View(UserManager.Users);
         }
 
-        // GET: UsuariosController1/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Modificar(string id)
         {
-            return View();
+            Areas.Identity.Data.Usuario usuarioPorModificar = await UserManager.FindByIdAsync(id);
+            return View(usuarioPorModificar);
         }
 
-        // GET: UsuariosController1/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: UsuariosController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Modificar(string id, string nombre, string primerApellido,
+                                                  string segundoApellido, int identificacion, 
+                                                  int tipoIdentificacion,
+                                                  string provincia, string canton, string distrito,
+                                                  string otrasSenas)
         {
+            Areas.Identity.Data.Usuario usuarioPorModificar = await UserManager.FindByIdAsync(id);
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                usuarioPorModificar.Nombre = nombre;
+                usuarioPorModificar.PrimerApellido = primerApellido;
+                usuarioPorModificar.SegundoApellido = segundoApellido;
+                usuarioPorModificar.Identificacion = identificacion;
+                usuarioPorModificar.Provincia = provincia;
+                usuarioPorModificar.Canton = canton;
+                usuarioPorModificar.Distrito = distrito;
+                usuarioPorModificar.OtrasSenas = otrasSenas;
+
+                await UserManager.UpdateAsync(usuarioPorModificar);
+
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {
@@ -54,41 +67,25 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: UsuariosController1/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Eliminar(string id)
         {
-            return View();
+            Areas.Identity.Data.Usuario usuarioPorEliminar;
+
+            usuarioPorEliminar = await UserManager.FindByIdAsync(id);
+            return View(usuarioPorEliminar);
         }
 
-        // POST: UsuariosController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Eliminar(string id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                Areas.Identity.Data.Usuario usuarioPorEliminar;
+                usuarioPorEliminar = await UserManager.FindByIdAsync(id);
+                await UserManager.DeleteAsync(usuarioPorEliminar);
 
-        // GET: UsuariosController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuariosController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Listar));
             }
             catch
             {

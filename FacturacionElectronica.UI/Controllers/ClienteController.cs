@@ -105,10 +105,6 @@ namespace FacturacionElectronica.UI.Controllers
             };
        }
         
-        
-       
-
-        // GET: ClientesController/Delete/5
         public ActionResult Eliminar(int id)
 
         {
@@ -117,8 +113,6 @@ namespace FacturacionElectronica.UI.Controllers
 
             return View(cliente);
         }
-
-        // POST: ClientesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Eliminar(int id, IFormCollection collection)

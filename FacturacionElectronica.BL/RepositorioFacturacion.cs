@@ -3,7 +3,9 @@ using FacturacionElectronica.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FacturacionElectronica.BL
 {
@@ -54,23 +56,11 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Cliente.Update(ClientePorModificar);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
         public void EliminarCliente(Cliente cliente)
         {
             elContextoDeBaseDeDatos.Cliente.Remove(cliente);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
-
-
-
-
-
-
-
-
-
-
 
         public void AgregarCierre(Cierre cierre)
         {
@@ -97,16 +87,11 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Cierre.Update(cierrePorModificar) ;
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
         public void EliminarCierre(Cierre cierre)
         {
             elContextoDeBaseDeDatos.Cierre.Remove(cierre);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
-
-
-
 
         public void AgregarInventario(Inventario inventario)
         {
@@ -138,11 +123,13 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Inventario.Update(productoPorModificar);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
         public void EliminarInventario(Inventario inventario)
         {
             elContextoDeBaseDeDatos.Inventario.Remove(inventario);
             elContextoDeBaseDeDatos.SaveChanges();
         }
+
+        
+
     }
 }
