@@ -14,20 +14,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using FacturacionElectronica.Modelos;
 
 namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<Usuario> _signInManager;
-        private readonly UserManager<Usuario> _userManager;
+        private readonly SignInManager<Data.Usuario> _signInManager;
+        private readonly UserManager<Data.Usuario> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<Usuario> userManager,
-            SignInManager<Usuario> signInManager,
+            UserManager<Data.Usuario> userManager,
+            SignInManager<Data.Usuario> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -82,6 +83,12 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             [Display(Name = "Confirmar la Clave")]
             [Compare("Password", ErrorMessage = "Las Contraseñas no coinciden")]
             public string ConfirmPassword { get; set; }
+            public int Identificacion { get; set; }
+            public TipoDeIdentificacion TipoDeIdentificacion { get; set; }
+            public string Provincia { get; set; }
+            public string Canton { get; set; }
+            public string Distrito { get; set; }
+            public string OtrasSenas { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -96,7 +103,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new Usuario { Nombre = Input.Nombre, PrimerApellido = Input.PrimerApellido, SegundoApellido = Input.SegundoApellido, UserName = Input.Email, Email = Input.Email };
+                var user = new Data.Usuario { Nombre = Input.Nombre, PrimerApellido = Input.PrimerApellido, SegundoApellido = Input.SegundoApellido, UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

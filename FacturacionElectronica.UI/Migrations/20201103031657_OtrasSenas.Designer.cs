@@ -4,14 +4,16 @@ using FacturacionElectronica.UI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FacturacionElectronica.UI.Migrations
 {
     [DbContext(typeof(ContextoBaseDeDatos))]
-    partial class ContextoBaseDeDatosModelSnapshot : ModelSnapshot
+    [Migration("20201103031657_OtrasSenas")]
+    partial class OtrasSenas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
