@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FacturacionElectronica.Modelos.Inventario>
+
+@{
+    ViewData["Title"] = "ListarInventario";
+}
+
+<h1>Agregar Inventario</h1>
+
+<p>
+    <a asp-action="Create">Agregar Factura</a>
+    <a asp-action="Create">Resumen</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayName("Precio de venta sin IVA")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Existencia)
+            </th>
+            <th>
+                @Html.DisplayName("Cantidad")
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
+            <td>
+                <input type="number" name="cantidad" min="1" value="1">
+            </td>
+            
+          
+            <td>
+                @Html.ActionLink("Seleccionar", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

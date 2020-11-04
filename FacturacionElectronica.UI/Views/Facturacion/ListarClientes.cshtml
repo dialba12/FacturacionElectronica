@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FacturacionElectronica.Modelos.Cliente>
+
+@{
+    ViewData["Title"] = "Listar";
+}
+
+<h1>Seleccionar Cliente de Factura</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.SegundoNombre)
+                @Html.DisplayFor(modelItem => item.PrimerApellido) 
+                @Html.DisplayFor(modelItem => item.SegundoApellido)
+            </td>
+          
+            <td>
+                @Html.ActionLink("Seleccionar", "ListarInventario", new { idCliente =item.idCliente}) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

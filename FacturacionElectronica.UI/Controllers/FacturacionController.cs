@@ -1,74 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using FacturacionElectronica.UI.Areas.Identity.Data;
+using FacturacionElectronica.BL;
+using FacturacionElectronica.Modelos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace FacturacionElectronica.UI.Controllers
 {
     [Authorize]
     public class FacturacionController : Controller
     {
+        private readonly IRepositorioFacturacion Repositorio;
 
-        private readonly UserManager<Usuario> UserManager;
-        private readonly RoleManager<IdentityRole> RoleManager;
-
-        public FacturacionController(UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager)
+        public FacturacionController(IRepositorioFacturacion repositorio)
         {
-            this.UserManager = userManager;
-            this.RoleManager = roleManager;
+            Repositorio = repositorio;
         }
 
-
-        public async Task<ActionResult> Listar()
+        public ActionResult ListarClientes()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                await RoleManager.CreateAsync(new IdentityRole("Administrador"));
-                var Usuario = await UserManager.GetUserAsync(HttpContext.User);
-                await UserManager.AddToRoleAsync(Usuario, "Administrador");
-            }
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientes();
+
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+
+            if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
+            else
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion");}
+
+            return View(ListaDeClientes);
+        }
+
+        public ActionResult ListarInventario(int idCliente)
+        {
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+
+            
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
+
+            return View(ListaDeInventario);
+        }
+
+        public ActionResult NoExistenClientes()
+        {
             return View();
         }
 
-        // GET: FacturacionController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult NoExisteInventario()
         {
             return View();
         }
 
-        // GET: FacturacionController/Create
-        public ActionResult Create()
+        // GET: FacturacionController1/Details/5
+        public ActionResult AgregarLinea(int codigo)
         {
             return View();
         }
 
-        // POST: FacturacionController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FacturacionController/Edit/5
+        
+        // GET: FacturacionController1/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: FacturacionController/Edit/5
+        // POST: FacturacionController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -83,13 +88,13 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
-        // GET: FacturacionController/Delete/5
+        // GET: FacturacionController1/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: FacturacionController/Delete/5
+        // POST: FacturacionController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

@@ -9,17 +9,22 @@ namespace FacturacionElectronica.Modelos
     {
         [Key]
         public int idCliente { get; set; }
+
         [Required(ErrorMessage ="Este dato es obligatorio")]
         [Display(Name ="Identificación:")]
         public int Identificacion { get; set; }
+
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name = "Tipo de identificación:")]
         public TipoDeIdentificacion TipoIdentificacion { get; set; }
+
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name = "Nombre:")]
         public string Nombre { get; set; }
+
         [Display(Name = "Segundo nombre:")]
         public string? SegundoNombre { get; set; }
+
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name ="Primer apellido:")]
         public string PrimerApellido { get; set; }

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "AgregarDescuento";
+}
+
+<h3>Desea agregar un a la factura?</h3>
+
+<div>
+    </dl>
+
+    <form asp-action="SeleccionarDescuento">
+        @Html.ActionLink("Si", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+        @Html.ActionLink("No", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+    </form>
+</div>
