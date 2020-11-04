@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace FacturacionElectronica.Modelos
 {
     public class Factura
     {
-
+        [Key]
         public int Clave { get; set; }
         public int idDetalleServicio { get; set; }
         public int NumeroConsecutivo { get; set; }

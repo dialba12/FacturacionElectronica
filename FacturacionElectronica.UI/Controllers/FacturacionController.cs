@@ -28,18 +28,119 @@ namespace FacturacionElectronica.UI.Controllers
 
         public ActionResult ListarFacturas()
         {
-            List<Cliente> ListaDeClientes;
-            ListaDeClientes = Repositorio.ObtenerClientes();
+            List<Factura> ListaDeFacturas;
+            ListaDeFacturas = Repositorio.ObtenerFactura();
 
-            List<Inventario> ListaDeInventario;
-            ListaDeInventario = Repositorio.ObtenerInventario();
-
-            if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
-            else
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
-
-            return View(ListaDeClientes);
+            return View(ListaDeFacturas);
         }
+
+        public ActionResult Consultar(int id)
+
+        {
+            List<Factura> ListaDeFacturas;
+            ListaDeFacturas = Repositorio.ObtenerFacturaPorIdentificacion(id);
+
+            Factura factura;
+
+
+            if (ListaDeFacturas.Count.Equals(0))
+            {
+                return RedirectToAction("NoExiste", "Facturacion");
+            }
+            else
+            {
+                factura = ListaDeFacturas.First();
+            }
+            return View(factura);
+        }
+
+        public ActionResult NoExiste(int id)
+
+        {
+
+            return View();
+        }
+
+
+        public ActionResult ConsultarCliente(int id)
+
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientePorIdentificacion(id);
+
+            Cliente cliente;
+
+
+            if (ListaDeClientes.Count.Equals(0))
+            {
+                return RedirectToAction("NoExisteCliente", "Facturacion");
+            }
+            else
+            {
+                cliente = ListaDeClientes.First();
+            }
+            return View(cliente);
+        }
+
+        public ActionResult NoExisteCliente(int id)
+
+        {
+
+            return View();
+        }
+
+
+        public ActionResult ConsultarInventario(int codigo)
+
+        {
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventarioPorCodigo(codigo);
+
+            Inventario inventario;
+
+
+            if (ListaDeInventario.Count.Equals(0))
+            {
+                return RedirectToAction("NoExisteInventario", "Facturacion");
+            }
+            else
+            {
+                inventario = ListaDeInventario.First();
+            }
+            return View(inventario);
+        }
+
+        public ActionResult NoExisteInventario(int id)
+
+        {
+            return View();
+        }
+
+        public ActionResult Eliminar(int id)
+
+        {
+            Factura factura;
+            factura = Repositorio.ObtenerFacturaPorId(id);
+
+            return View(factura);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Eliminar(int id, IFormCollection collection)
+        {
+            try
+            {
+                Factura factura = Repositorio.ObtenerFacturaPorId(id);
+
+                Repositorio.EliminarFactura(factura);
+                return RedirectToAction(nameof(ListarFacturas));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
 
         public ActionResult ListarClientes()

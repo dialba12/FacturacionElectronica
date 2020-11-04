@@ -4,32 +4,6 @@
     ViewData["Title"] = "Modificar";
 }
 
-@{
-    var TipoDeIdentificacion = new List<SelectListItem>()
-{
-        new SelectListItem()
-        {
-            Text = "Cédula física.",
-            Value = "1"
-        },
-        new SelectListItem()
-        {
-            Text = "Cédula jurídica.",
-            Value = "2"
-        },
-        new SelectListItem()
-        {
-            Text = "DIMEX.",
-            Value = "3"
-        },
-        new SelectListItem()
-        {
-            Text = "NITE",
-            Value = "4"
-        }
-    };
-}
-
 <h1>Modificar cliente</h1>
 
 <hr />
@@ -62,7 +36,12 @@
             <div class="form-group">
                 <label asp-for="TipoIdentificacion" class="control-label"></label>
                 <br />
-                @Html.DropDownList("TipoIdentificacion", TipoDeIdentificacion)
+                <select id="TipoIdentificacion" name="TipoIdentificacion">
+                    <option value="01">Cédula Física</option>
+                    <option value="02">Cédula Jurídica</option>
+                    <option value="03">DIMEX</option>
+                    <option value="04">NITE</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Correo" class="control-label"></label>

@@ -1,0 +1,63 @@
+﻿@model FacturacionElectronica.Modelos.Factura
+
+@{
+    ViewData["Title"] = "Consultar";
+}
+
+<h1>Consultar factura</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NumeroConsecutivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumeroConsecutivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaEmision)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaEmision)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idUsuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idUsuario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idCliente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CondicionVenta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CondicionVenta)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MedioPago)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MedioPago)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idResumen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idResumen)
+        </dd>
+    </dl>
+</div>
+<<div>
+    @Html.ActionLink("Modificar", "Modificar", new { id = Model.Clave})
+    @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.Clave })
+    <a asp-action="ListarFacturas">Regresar</a>
+</div>

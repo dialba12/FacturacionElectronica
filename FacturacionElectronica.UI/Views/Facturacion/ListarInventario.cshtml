@@ -4,62 +4,82 @@
     ViewData["Title"] = "ListarInventario";
 }
 
+@{
+
+}
 <h1>Agregar Inventario</h1>
 
 <p>
-    <a asp-action="Create">Agregar Factura</a>
-    <a asp-action="Create">Resumen</a>
+    <a asp-action="Create">Procesar Factura</a>
+
 </p>
+<form action="ConsultarInventario">
+
+    <input type="number" name="codigo" id="codigo">
+
+    <p><input type="submit" value="Consultar"></p>
+</form>
 <table class="table">
     <thead>
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.Codigo)
+                @Html.DisplayName("Cant")
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayName("Precio de venta sin IVA")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Existencia)
-            </th>
-            <th>
-                @Html.DisplayName("Cantidad")
-            </th>
-            <th>
 
+            <th>
+                @Html.DisplayName("Descripción")
             </th>
+            <th>
+                @Html.DisplayName("Precio venta sin IVA")
+            </th>
+            <th>
+                @Html.DisplayName("Existencia")
+            </th>
+            <th>
+                @Html.DisplayName("Unidad de Medida")
+            </th>
+
+            <th>
+               
+            </th>
+           
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach (var item in Model)
+        {
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioVenta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Existencia)
-            </td>
-            <td>
-                <input type="number" name="cantidad" min="1" value="1">
-            </td>
-            
-          
-            <td>
-                @Html.ActionLink("Seleccionar", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+                <td>
+                    @Html.DisplayName("1")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Existencia)
+                </td>
+                <td>
+                    <select id="UnidadDeMedida" name="UnidadDeMedida">
+                        <option value="01">Gramos</option>
+                        <option value="02">Centimetros</option>
+                        <option value="03"> Pulgadas</option>
+                        <option value="04">Pies</option>
+                        <option value="05">Unidad</option>
+                        <option value="06"> Decenas</option>
+                    </select>
+                </td>
 
-            </td>
-        </tr>
-}
+
+                <td>
+                    @Html.ActionLink("Seleccionar", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

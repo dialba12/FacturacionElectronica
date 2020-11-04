@@ -4,31 +4,6 @@
     ViewData["Title"] = "Registrar Usuario";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-@{
-    var TipoDeIdentificacion = new List<SelectListItem>()
-{
-        new SelectListItem()
-        {
-            Text = "Cédula física.",
-            Value = "1"
-        },
-        new SelectListItem()
-        {
-            Text = "Cédula jurídica.",
-            Value = "2"
-        },
-        new SelectListItem()
-        {
-            Text = "DIMEX.",
-            Value = "3"
-        },
-        new SelectListItem()
-        {
-            Text = "NITE",
-            Value = "4"
-        }
-    };
-}
 
 <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
@@ -64,9 +39,13 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label asp-for="Input.TipoDeIdentificacion"></label>
-                <br />
-                @Html.DropDownList("TipoIdentificacion", TipoDeIdentificacion)
-                
+                <select id="TipoDeIdentificacion" name="TipoDeIdentificacion">
+                    <option value="01">Cédula Física</option>
+                    <option value="02">Cédula Jurídica</option>
+                    <option value="03">DIMEX</option>
+                    <option value="04">NITE</option>
+                </select>
+
             </div>
         </div>
     </div>

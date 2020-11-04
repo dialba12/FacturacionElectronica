@@ -1,0 +1,58 @@
+﻿@model IEnumerable<FacturacionElectronica.Modelos.Factura>
+
+@{
+    ViewData["Title"] = "ListarFacturas";
+}
+
+<h1>Módulo de facturas</h1>
+
+<p>
+    <a asp-action="ListarClientes">Añadir</a>
+</p>
+<form action="Consultar">
+
+    <input type="number" name="id" id="id">
+
+    <p><input type="submit" value="Consultar"></p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("ID Receptor")
+            </th>
+            <th>
+                @Html.DisplayName("Fecha de emisión")
+            </th>
+            <th>
+                @Html.DisplayName("Número consecutivo")
+            </th>
+
+            <th>
+                @Html.DisplayName("Acciones")
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEmision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroConsecutivo)
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+               
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -145,23 +145,41 @@ namespace FacturacionElectronica.BL
 
         public void AgregarFactura(Factura factura)
         {
-            throw new NotImplementedException();
+            elContextoDeBaseDeDatos.Factura.Add(factura);
+            elContextoDeBaseDeDatos.SaveChanges();
         }
 
         public List<Factura> ObtenerFactura()
         {
-            throw new NotImplementedException();
+            List<Factura> ListaDeFacturas;
+            ListaDeFacturas = elContextoDeBaseDeDatos.Factura.ToList();
+
+            return ListaDeFacturas;
         }
 
         public Factura ObtenerFacturaPorId(int id)
         {
-            throw new NotImplementedException();
+            Factura factura;
+            factura = elContextoDeBaseDeDatos.Factura.Find(id);
+            return factura;
+        }
+        
+        
+        public List<Factura> ObtenerFacturaPorIdentificacion(int clave)
+        {
+            var resultado = from listaFacturas in elContextoDeBaseDeDatos.Factura
+                            where listaFacturas.Clave == clave
+                            select listaFacturas;
+            return resultado.ToList();
         }
 
         public void EliminarFactura(Factura id)
         {
-            throw new NotImplementedException();
+            elContextoDeBaseDeDatos.Factura.Remove(id);
+            elContextoDeBaseDeDatos.SaveChanges();
         }
+
+       
     }
 
 

@@ -34,7 +34,8 @@ namespace FacturacionElectronica.BL
         public void AgregarFactura(Factura factura);
         public List<Factura> ObtenerFactura();
         public Factura ObtenerFacturaPorId(int id);
-        
+
+        public List<Factura> ObtenerFacturaPorIdentificacion(int identificacion);
         public void EliminarFactura(Factura id);
     }
 }

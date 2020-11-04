@@ -4,40 +4,57 @@
     ViewData["Title"] = "Listar";
 }
 
-<h1>Seleccionar Cliente de Factura</h1>
+<h1>Seleccionar Cliente </h1>
 
+
+@Html.ActionLink("Añadir", "Agregar","Cliente"  , new { /* id=item.PrimaryKey */ })
+<form action="ConsultarCliente">
+
+    <input type="number" name="id" id="id">
+
+    <p><input type="submit" value="Consultar"></p>
+</form>
 <table class="table">
     <thead>
         <tr>
-          
+
+
             <th>
-                @Html.DisplayNameFor(model => model.Identificacion)
+                @Html.DisplayName("Nombre")
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayName("Primer Apellido")
             </th>
-           
+
+            <th>
+                @Html.DisplayName("Segundo Apellido")
+            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Identificacion)
-            </td>
-           
+
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
-                @Html.DisplayFor(modelItem => item.PrimerApellido) 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimerApellido)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.SegundoApellido)
             </td>
-          
+
             <td>
-                @Html.ActionLink("Seleccionar", "ListarInventario", new { idCliente =item.idCliente}) 
+                @Html.ActionLink("Seleccionar", "ListarInventario", new { idCliente = item.idCliente })
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
