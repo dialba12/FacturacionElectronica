@@ -84,23 +84,23 @@ namespace FacturacionElectronica.UI.Controllers
             {
                  new SelectListItem()
                 {
-                    Text = "Cédula física.",
-                     Value = "1"
+                    Text = "Cédula Física.",
+                     Value = "01"
                 },
                 new SelectListItem()
                 {
-                    Text = "Cédula jurídica.",
-                    Value = "2"
+                    Text = "Cédula Jurídica.",
+                    Value = "02"
                 },
                 new SelectListItem()
                 {
                    Text = "DIMEX.",
-                   Value = "3"
+                   Value = "03"
                 },
                 new SelectListItem()
                 {
                    Text = "NITE",
-                   Value = "4"
+                   Value = "04"
                 }
             };
        }

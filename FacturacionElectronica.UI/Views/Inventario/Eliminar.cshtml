@@ -4,13 +4,13 @@
     ViewData["Title"] = "Eliminar";
 }
 
-<h3>Estás seguro de eliminar   @Html.DisplayFor(model => model.Descripcion) del inventario ?</h3>
+<h3>¿ Está seguro que desea elimina eliminar @Html.DisplayFor(model => model.Descripcion) del inventario ?</h3>
 
 <div>
-    </dl>
+    </dl> 
 
     <form asp-action="Eliminar">
-        <input type="submit" value="Si" class="btn btn-danger" />
-        <a asp-action="Listar" class="btn btn-success">No</a>
+        <input type="submit" value="Si" class="btn btn-success" />
+        <a asp-action="Listar" class="btn btn-danger">No</a>
     </form>
 </div>

@@ -6,9 +6,9 @@ namespace FacturacionElectronica.Modelos
 {
     public enum TipoDeIdentificacion
     {
-        Cedula_Fisica       = 01,
-        Cedula_Juridica     = 02,
-        DIMEX               = 03,
-        NITE                = 04,
+        Fisica       = 01,
+        Juridica     = 02,
+        DIMEX        = 03,
+        NITE         = 04,
     }
 }

@@ -12,7 +12,7 @@
 
 <form action="Consultar">
 
-    <p>Código: <input type="number" name="codigo" id="codigo"></p>
+    <input type="number" name="codigo" id="codigo">
 
     <p><input type="submit" value="Consultar"></p>
 </form>
@@ -24,15 +24,14 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrecioCosto)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.PrecioVenta)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Existencia)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayName("Acciones")
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,16 +41,13 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PrecioCosto)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.PrecioVenta)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Existencia)
             </td>
             <td>
-                @Html.ActionLink("Modificar", "Modificar", new {id=item.idInventario}) |
+                @Html.ActionLink("Modificar", "Modificar", new {id=item.idInventario}) 
                 @Html.ActionLink("Eliminar", "Eliminar", new { id=item.idInventario})
             </td>
         </tr>

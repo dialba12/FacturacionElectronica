@@ -4,7 +4,7 @@
     ViewData["Title"] = "Lista de clientes";
 }
 
-<h1>Módulo de clientes</h1>
+<h1>Módulo clientes</h1>
 
 <p>
     <a asp-action="Agregar">Añadir</a>
@@ -13,7 +13,7 @@
 
 <form action="Consultar">
 
-    <p>Identificación: .3<input type="number" name="id" id="id"></p>
+    <input type="number" name="id" id="id">
 
     <p><input type="submit" value="Consultar"></p>
 </form>
@@ -31,7 +31,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.SegundoApellido)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayName("Acciones")
+            </th>
         </tr>
     </thead>
     <tbody>
