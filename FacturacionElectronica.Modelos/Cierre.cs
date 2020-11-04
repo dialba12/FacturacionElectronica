@@ -8,8 +8,8 @@ namespace FacturacionElectronica.Modelos
     public class Cierre
     {
         [Key]
-        public int Numero { get; set; }
-        public string NombreUsuario { get; set; }
+        public int idCierre { get; set; }
+        public string IdUsuario { get; set; }
         public DateTime Fecha { get; set; }
         [Required(ErrorMessage ="Este dato es obligatorio")]
         public double Monto { get; set; }

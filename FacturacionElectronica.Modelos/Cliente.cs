@@ -22,9 +22,6 @@ namespace FacturacionElectronica.Modelos
         [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
-        [Display(Name = "Segundo Nombre")]
-        public string? SegundoNombre { get; set; }
-
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name ="Primer Apellido")]
         public string PrimerApellido { get; set; }
@@ -45,9 +42,6 @@ namespace FacturacionElectronica.Modelos
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name = "Distrito")]
         public string Distrito { get; set; }
-        [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Barrio")]
-        public string Barrio { get; set; }
         [Required(ErrorMessage = "Este dato es obligatorio")]
         [Display(Name = "Otras Señas")]
         public string OtrasSenas { get; set; }

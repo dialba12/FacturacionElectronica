@@ -36,7 +36,7 @@ namespace FacturacionElectronica.UI.Controllers
             try
             {
                 string nombreUsuario = User.Identity.Name;
-                cierre.NombreUsuario = nombreUsuario;
+                cierre.IdUsuario = nombreUsuario;
                 cierre.Fecha = DateTime.Now;
 
                 Repositorio.AgregarCierre(cierre);

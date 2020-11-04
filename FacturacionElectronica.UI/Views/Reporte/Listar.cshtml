@@ -36,8 +36,8 @@
                 @Html.DisplayFor(modelItem => item.Monto)
             </td>
             <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id=item.Numero}) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Numero })
+                @Html.ActionLink("Modificar", "Modificar", new { id=item.idCierre}) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id=item.idCierre })
             </td>
         </tr>
 }

@@ -29,5 +29,12 @@ namespace FacturacionElectronica.BL
         public void EliminarInventario(Inventario id);
         public List<Inventario> ObtenerInventarioPorCodigo(int codigo);
 
+
+
+        public void AgregarFactura(Factura factura);
+        public List<Factura> ObtenerFactura();
+        public Factura ObtenerFacturaPorId(int id);
+        
+        public void EliminarFactura(Factura id);
     }
 }

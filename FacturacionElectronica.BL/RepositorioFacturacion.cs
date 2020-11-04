@@ -48,7 +48,6 @@ namespace FacturacionElectronica.BL
         {
             Cliente ClientePorModificar = ObtenerClientePorId(id);
             ClientePorModificar.Nombre = cliente.Nombre;
-            ClientePorModificar.SegundoNombre = cliente.SegundoNombre;
             ClientePorModificar.PrimerApellido = cliente.PrimerApellido;
             ClientePorModificar.SegundoApellido = cliente.SegundoApellido;
             ClientePorModificar.Identificacion = cliente.Identificacion;
@@ -57,7 +56,6 @@ namespace FacturacionElectronica.BL
             ClientePorModificar.Provincia = cliente.Provincia;
             ClientePorModificar.Canton = cliente.Canton;
             ClientePorModificar.Distrito = cliente.Distrito;
-            ClientePorModificar.Barrio = cliente.Barrio;
             ClientePorModificar.OtrasSenas = cliente.OtrasSenas;
             ClientePorModificar.Telefono = cliente.Telefono;
 
@@ -145,6 +143,25 @@ namespace FacturacionElectronica.BL
             return resultado.ToList();
         }
 
+        public void AgregarFactura(Factura factura)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Factura> ObtenerFactura()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Factura ObtenerFacturaPorId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EliminarFactura(Factura id)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

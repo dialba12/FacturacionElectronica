@@ -24,6 +24,24 @@ namespace FacturacionElectronica.UI.Controllers
             Repositorio = repositorio;
         }
 
+
+
+        public ActionResult ListarFacturas()
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientes();
+
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+
+            if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
+            else
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
+
+            return View(ListaDeClientes);
+        }
+
+
         public ActionResult ListarClientes()
         {
             List<Cliente> ListaDeClientes;
