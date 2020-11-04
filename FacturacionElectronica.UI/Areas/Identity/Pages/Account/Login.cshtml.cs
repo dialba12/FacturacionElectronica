@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         private readonly SignInManager<Usuario> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Usuario> signInManager, 
+        public LoginModel(SignInManager<Usuario> signInManager,
             ILogger<LoginModel> logger,
             UserManager<Usuario> userManager)
         {
@@ -43,11 +43,10 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Ingrese un correo electrónico")]
-            [Display(Name = "Correo Electrónico")]
-            [EmailAddress(ErrorMessage = "Ingrese un correo electrónico válido")]
+            [Required(ErrorMessage = "Ingrese una identificación")]
+            [Display(Name = "Identificación")]
             public string Email { get; set; }
-           
+
             [Required(ErrorMessage = "Ingrese una clave")]
             [Display(Name = "Clave")]
             [DataType(DataType.Password)]
@@ -109,3 +108,5 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         }
     }
 }
+
+

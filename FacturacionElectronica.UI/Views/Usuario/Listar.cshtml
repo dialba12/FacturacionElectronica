@@ -8,9 +8,14 @@
 
 <p>
     <a class="nav-link" href='/Identity/Account/Register'>Añadir</a>
-    <input class="form-control" />
-    <a asp-action="Agregar">Consultar</a>
 </p>
+
+<form action="Consultar">
+
+    <input type="text" name="identificacion" id="identificacion">
+
+    <p><input type="submit" value="Consultar"></p>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -18,37 +23,38 @@
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PrimerApellido)
+                @Html.DisplayName("Primer Apellido")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SegundoApellido)
+                @Html.DisplayName("Segundo Apellido")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Html.DisplayName("Acciones")
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimerApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegundoApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id=item.Id}) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimerApellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SegundoApellido)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+

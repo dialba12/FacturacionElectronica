@@ -16,12 +16,12 @@ namespace FacturacionElectronica.Modelos
 
         [Required(ErrorMessage = "Ingrese su primer apellido")]
         [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco")]
-        [Display(Name = "PrimerApellido")]
+        [Display(Name = "Primer Apellido")]
         [DataType(DataType.Text)]
         public string PrimerApellido { get; set; }
         [Required(ErrorMessage = "Ingrese su segundo apellido")]
         [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco")]
-        [Display(Name = "SegundoApellido")]
+        [Display(Name = "Segundo Apellido")]
         [DataType(DataType.Text)]
         public string SegundoApellido { get; set; }
         public int Identificacion { get; set; }

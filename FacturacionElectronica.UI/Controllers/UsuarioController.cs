@@ -23,10 +23,10 @@ namespace FacturacionElectronica.UI.Controllers
             PasswordHasher = passwordHasher;
         }
 
-        
+
         public ActionResult Listar()
         {
-           
+
             return View(UserManager.Users);
         }
 
@@ -39,7 +39,7 @@ namespace FacturacionElectronica.UI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Modificar(string id, string nombre, string primerApellido,
-                                                  string segundoApellido, int identificacion, 
+                                                  string segundoApellido, int identificacion,
                                                   int tipoIdentificacion,
                                                   string provincia, string canton, string distrito,
                                                   string otrasSenas)
@@ -91,6 +91,15 @@ namespace FacturacionElectronica.UI.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<ActionResult> Consultar(string identificacion)
+        {
+            Areas.Identity.Data.Usuario usuarioPorMostrar;
+            usuarioPorMostrar = await UserManager.FindByNameAsync(identificacion);
+
+            
+            return View(usuarioPorMostrar);
         }
     }
 }
