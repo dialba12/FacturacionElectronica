@@ -10,23 +10,23 @@ namespace FacturacionElectronica.Modelos
         [Key]
         public int idInventario { get; set; }
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Código")]
+        [Display(Name = "Código:")]
         public int Codigo { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Descripción")]
+        [Display(Name = "Descripción:")]
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Precio de costo")]
+        [Display(Name = "Precio costo:")]
         public double PrecioCosto { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Precio de venta")]
+        [Display(Name = "Precio venta:")]
         public double PrecioVenta { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Existencia")]
+        [Display(Name = "Existencia:")]
         public int Existencia { get; set; }
     }
 }

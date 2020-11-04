@@ -20,7 +20,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayName("Nombre")
             </th>
             <th>
                 @Html.DisplayName("Primer Apellido")
@@ -29,30 +29,36 @@
                 @Html.DisplayName("Segundo Apellido")
             </th>
             <th>
+                @Html.DisplayName("Usuario")
+            </th>
+            <th>
                 @Html.DisplayName("Acciones")
             </th>
-           
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrimerApellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SegundoApellido)
-                </td>
-               
-                <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.Id }) |
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimerApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SegundoApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+
+            <td>
+                @Html.ActionLink("Modificar", "Modificar", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -55,13 +55,13 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             public string Nombre { get; set; }
 
-            [Required(ErrorMessage = "Ingrese un nombre")]
+            [Required(ErrorMessage = "Ingrese su primer apellido")]
             [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Primer apellido")]
             [DataType(DataType.Text)]
             public string PrimerApellido { get; set; }
 
-            [Required(ErrorMessage = "Ingrese un nombre")]
+            [Required(ErrorMessage = "Ingrese su segundo apellido")]
             [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco o signos")]
             [Display(Name = "Segundo apellido")]
             [DataType(DataType.Text)]
