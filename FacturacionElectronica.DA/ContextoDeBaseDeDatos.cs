@@ -19,6 +19,11 @@ namespace FacturacionElectronica.DA
         public DbSet<Inventario> Inventario { get; set; }
         public DbSet<Factura> Factura { get; set; }
 
+        public DbSet<DetalleServicio> DetalleServicio { get; set; }
+
+        public DbSet<LineaDetalle> LineaDetalle { get; set; }
+
+
     }
     }
 

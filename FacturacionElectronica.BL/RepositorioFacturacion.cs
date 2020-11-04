@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FacturacionElectronica.BL
 {
-    public class RepositorioFacturacion    : IRepositorioFacturacion
+    public class RepositorioFacturacion : IRepositorioFacturacion
     {
         private ContextoDeBaseDeDatos elContextoDeBaseDeDatos;
 
@@ -90,7 +90,7 @@ namespace FacturacionElectronica.BL
             Cierre cierrePorModificar = ObtenerCierrePorId(id);
             cierrePorModificar.Monto = cierre.Monto;
 
-            elContextoDeBaseDeDatos.Cierre.Update(cierrePorModificar) ;
+            elContextoDeBaseDeDatos.Cierre.Update(cierrePorModificar);
             elContextoDeBaseDeDatos.SaveChanges();
         }
         public void EliminarCierre(Cierre cierre)
@@ -163,8 +163,8 @@ namespace FacturacionElectronica.BL
             factura = elContextoDeBaseDeDatos.Factura.Find(id);
             return factura;
         }
-        
-        
+
+
         public List<Factura> ObtenerFacturaPorIdentificacion(int clave)
         {
             var resultado = from listaFacturas in elContextoDeBaseDeDatos.Factura
@@ -179,9 +179,51 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-       
+        public void AgregarDetalleServicio(DetalleServicio detalleServicio)
+        {
+            elContextoDeBaseDeDatos.DetalleServicio.Add(detalleServicio);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+        public List<DetalleServicio> ObtenerDetalles()
+        {
+            List<DetalleServicio> ListaDeDetalles;
+            ListaDeDetalles = elContextoDeBaseDeDatos.DetalleServicio.ToList();
+            return ListaDeDetalles;
+        }
+        public void AgregarLineaDetalle(LineaDetalle lineaDetalle)
+        {
+            elContextoDeBaseDeDatos.LineaDetalle.Add(lineaDetalle);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+        public DetalleServicio ObtenerDetallePorId(int id)
+        {
+            DetalleServicio detalle;
+            detalle= elContextoDeBaseDeDatos.DetalleServicio.Find(id);
+            return detalle;
+        }
+
+        public void ModificarDetalle(int id, DetalleServicio detalle)
+        {
+            DetalleServicio detallePorModificar = ObtenerDetallePorId(id);
+            detallePorModificar.idDetalleServicio = detallePorModificar.id;
+            elContextoDeBaseDeDatos.DetalleServicio.Update(detallePorModificar);
+            elContextoDeBaseDeDatos.SaveChanges();
+
+
+        }
+
+
+
+            public List<LineaDetalle> ObtenerLineas()
+            {
+                List<LineaDetalle> ListaDeLineas;
+                ListaDeLineas = elContextoDeBaseDeDatos.LineaDetalle.ToList();
+                return ListaDeLineas;
+            }
+        }
+
+
+
     }
-
-
-
-}

@@ -49,37 +49,40 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
 
-                <td>
-                    @Html.DisplayName("1")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioVenta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Existencia)
-                </td>
-                <td>
-                    <select id="UnidadDeMedida" name="UnidadDeMedida">
-                        <option value="01">Gramos</option>
-                        <option value="02">Centimetros</option>
-                        <option value="03"> Pulgadas</option>
-                        <option value="04">Pies</option>
-                        <option value="05">Unidad</option>
-                        <option value="06"> Decenas</option>
-                    </select>
-                </td>
+            <td>
+                @Html.DisplayName("1")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
+            <td>
+                <select id="UnidadDeMedida" name="UnidadDeMedida">
+                    <option value="01">Gramos</option>
+                    <option value="02">Centimetros</option>
+                    <option value="03"> Pulgadas</option>
+                    <option value="04">Pies</option>
+                    <option value="05">Unidad</option>
+                    <option value="06"> Decenas</option>
+                </select>
+            </td>
 
 
-                <td>
-                    @Html.ActionLink("Seleccionar", "AgregarLinea", new { /* id=item.PrimaryKey */ })
+            <td>
+            <td>
+                @Html.ActionLink("Seleccionar", "AgregarListaDetalleInventario", new { idInventario = item.idInventario, idCliente = TempData["idCliente"] , idDetalle =TempData["idDetalle"],
+                  cantidad= 100, existencia = item.Existencia, unidadMedida = "HAY QUE MODIFICAR", detalle = item.Descripcion, precioUnitario = item.PrecioVenta})
+            </td>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

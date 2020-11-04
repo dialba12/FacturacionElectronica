@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class LineaDetalle
+   public class LineaDetalle
     {
         [Key]
         public int idLineaDetalle { get; set; }
