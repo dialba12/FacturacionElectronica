@@ -153,7 +153,7 @@ namespace FacturacionElectronica.UI.Controllers
 
             if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
             else
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion");}
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion");}
 
             return View(ListaDeClientes);
         }
@@ -174,6 +174,10 @@ namespace FacturacionElectronica.UI.Controllers
             return View();
         }
 
+        public ActionResult NoExistenInventarios()
+        {
+            return View();
+        }
         public ActionResult NoExisteInventario()
         {
             return View();
