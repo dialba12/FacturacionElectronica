@@ -1,27 +1,37 @@
-﻿@model IEnumerable<FacturacionElectronica.Modelos.Cliente>
+﻿
+@model IEnumerable<FacturacionElectronica.Modelos.Cliente>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
 
-@{
-    ViewData["Title"] = "Lista de clientes";
-}
+        @{
+            ViewData["Title"] = "Lista de clientes";
+        }
+    </title>
+    
 
-<h1>Módulo clientes</h1>
+</head>
+<h1 id="titulo">
+    Módulo clientes
+</h1>
 
-<p>
+<p id="Boton1">
     <a asp-action="Agregar">Añadir</a>
-   
+
 </p>
 
 <form action="Consultar">
 
-    <input type="number" name="id" id="id">
+    <input id="Boton2" type="number" name="id">
 
-    <p><input type="submit" value="Consultar"></p>
+    <p id="Boton3"><input type="submit" value="Consultar"></p>
 </form>
 
 <table class="table">
     <thead>
         <tr>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -37,22 +47,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimerApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegundoApellido)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Modificar", new { id=item.idCliente}) |
-                @Html.ActionLink("Eliminar", "Eliminar", new { id=item.idCliente })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimerApellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SegundoApellido)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.idCliente }) |
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.idCliente })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

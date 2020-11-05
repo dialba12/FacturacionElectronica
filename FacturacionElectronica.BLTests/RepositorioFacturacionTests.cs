@@ -179,6 +179,98 @@ namespace FacturacionElectronica.BL.Tests
 
             Assert.IsFalse(resultado.Count() == null);
         }
+
+        [TestMethod()]
+        public void AgregarFacturaTest()
+        {
+            Factura factura = new Factura();
+            factura.Clave = 1;
+            factura.CondicionVenta = " venta ";
+            factura.FechaEmision = DateTime.Now;
+            factura.idCliente = 1;
+            factura.idDetalleServicio = 1;
+            factura.idResumen = 1;
+            factura.idUsuario = 1;
+            factura.MedioPago = "cheque";
+            factura.NumeroConsecutivo = 1;
+
+            var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
+            var mockrepositorio = new Mock<IRepositorioFacturacion>();
+            mockrepositorio.Setup(a => a.AgregarFactura(factura));
+            mockrepositorio.Setup(x => x.ObtenerFactura()).Returns(new List<Factura>() { new Factura() });
+
+            RepositorioFacturacion repo = new RepositorioFacturacion(mockcontexto.Object);
+
+            var resultado = mockrepositorio.Object.ObtenerFactura();
+
+            Assert.IsNotNull(resultado);
+        }
+
+        [TestMethod()]
+        public void EliminarFacturaTest()
+        {
+            Factura factura = new Factura();
+            factura.Clave = 1;
+            factura.CondicionVenta = " venta ";
+            factura.FechaEmision = DateTime.Now;
+            factura.idCliente = 1;
+            factura.idDetalleServicio = 1;
+            factura.idResumen = 1;
+            factura.idUsuario = 1;
+            factura.MedioPago = "cheque";
+            factura.NumeroConsecutivo = 1;
+
+            var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
+            var mockrepositorio = new Mock<IRepositorioFacturacion>();
+            mockrepositorio.Setup(a => a.AgregarFactura(factura));
+            mockrepositorio.Setup(r => r.EliminarFactura(factura));
+            mockrepositorio.Setup(x => x.ObtenerFactura()).Returns(new List<Factura>() { new Factura() });
+
+            RepositorioFacturacion repo = new RepositorioFacturacion(mockcontexto.Object);
+            var resultado = mockrepositorio.Object.ObtenerFactura();
+
+            Assert.IsFalse(resultado == null);
+        }
+
+        [TestMethod()]
+        public void AgregarDetalleServicioTest()
+        {
+            DetalleServicio detalle = new DetalleServicio();
+            detalle.id = 1;
+            detalle.idDetalleServicio = 1;
+            detalle.idLineaDetalle = 1;
+            var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
+            var mockrepositorio = new Mock<IRepositorioFacturacion>();
+            mockrepositorio.Setup(a => a.AgregarDetalleServicio(detalle));
+            mockrepositorio.Setup(x => x.ObtenerDetalles()).Returns(new List<DetalleServicio>() { new DetalleServicio() });
+
+            RepositorioFacturacion repo = new RepositorioFacturacion(mockcontexto.Object);
+
+            var resultado = mockrepositorio.Object.ObtenerDetalles();
+
+            Assert.IsNotNull(resultado);
+
+
+        }
+
+        [TestMethod()]
+        public void ModificarDetalleTest()
+        {
+            DetalleServicio detalle = new DetalleServicio();
+            detalle.id = 1;
+            detalle.idDetalleServicio = 1;
+            detalle.idLineaDetalle = 1;
+            var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
+            var mockrepositorio = new Mock<IRepositorioFacturacion>();
+            mockrepositorio.Setup(a => a.AgregarDetalleServicio(detalle));
+            mockrepositorio.Setup(a => a.ModificarDetalle(2, detalle));
+            mockrepositorio.Setup(x => x.ObtenerDetalles()).Returns(new List<DetalleServicio>() { new DetalleServicio() });
+
+            RepositorioFacturacion repo = new RepositorioFacturacion(mockcontexto.Object);
+            var resultado = mockrepositorio.Object.ObtenerDetalles();
+
+            Assert.IsTrue(resultado.Count() == 1);
+        }
     }
 
 
