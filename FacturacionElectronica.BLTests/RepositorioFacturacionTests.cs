@@ -18,18 +18,16 @@ namespace FacturacionElectronica.BL.Tests
         {
             Cliente cliente = new Cliente();
             cliente.Nombre = "Jeff";
-            cliente.SegundoNombre = "Willian";
             cliente.PrimerApellido = "Acosta";
             cliente.SegundoApellido = "Obando";
             cliente.Telefono = 12345;
             cliente.Identificacion = 1234;
-            cliente.TipoIdentificacion = TipoDeIdentificacion.Cedula_Fisica;
+            cliente.TipoIdentificacion = TipoDeIdentificacion.Fisica;
             cliente.idCliente = 1;
             cliente.Correo = "jeff@gmail.com";
             cliente.Provincia = "Guanacaste";
             cliente.Canton = "Abangares";
             cliente.Distrito = "Colorado";
-            cliente.Barrio = "Marisol";
             cliente.OtrasSenas = "Negro";
 
 
@@ -51,8 +49,8 @@ namespace FacturacionElectronica.BL.Tests
             Cierre cierre = new Cierre();
             cierre.Fecha = DateTime.Now;
             cierre.Monto = 1000;
-            cierre.NombreUsuario = "Edgar";
-            cierre.Numero = 12;
+            cierre.IdUsuario = "Edgar";
+            cierre.idCierre = 12;
 
 
             var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
@@ -74,8 +72,8 @@ namespace FacturacionElectronica.BL.Tests
 
             cierre.Fecha = DateTime.Now;
             cierre.Monto = 1000;
-            cierre.NombreUsuario = "Edgar";
-            cierre.Numero = 12;
+            cierre.IdUsuario = "Edgar";
+            cierre.idCierre = 12;
 
 
             var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
@@ -96,8 +94,8 @@ namespace FacturacionElectronica.BL.Tests
             Cierre cierre = new Cierre();
             cierre.Fecha = DateTime.Now;
             cierre.Monto = 1000;
-            cierre.NombreUsuario = "Edgar";
-            cierre.Numero = 12;
+            cierre.IdUsuario = "Edgar";
+            cierre.idCierre = 12;
 
 
             var mockcontexto = new Mock<ContextoDeBaseDeDatos>();

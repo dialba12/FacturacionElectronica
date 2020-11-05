@@ -1,0 +1,57 @@
+﻿@model FacturacionElectronica.Modelos.AgregarValoresLinea
+
+@{
+    ViewData["Title"] = "AgregarValoresLinea";
+}
+
+<h1>AgregarValoresLinea</h1>
+
+<h4>AgregarValoresLinea</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgregarValoresLinea">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+              
+                <input asp-for="idInventario" class="form-control" type="hidden" />
+              
+            </div>
+            <div class="form-group">
+               
+                <input asp-for="idCliente" class="form-control" type="hidden"/>
+                
+            </div>
+            <div class="form-group">
+               
+                <input asp-for="idDetalle" class="form-control" type="hidden"/>
+             
+            </div>
+            <div class="form-group">
+                <label asp-for="cantidad" class="control-label">Cantidad: </label>
+                <input type="number" min="1" max="@ViewBag.cantidadMaxima" asp-for="cantidad" class="form-control" value=" "/>
+                <span asp-validation-for="cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="unidadMedida" class="control-label">Unidad de medida: </label>
+                <select id="unidadMedida" name="unidadMedida">
+                    <option value="01">Gramos</option>
+                    <option value="02">Centimetros</option>
+                    <option value="03">Pulgadas</option>
+                    <option value="04">Pies</option>
+                    <option value="05">Unidad</option>
+                    <option value="06">Decenas</option>
+                </select>
+                <span asp-validation-for="unidadMedida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

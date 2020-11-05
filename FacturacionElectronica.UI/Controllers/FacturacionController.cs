@@ -143,6 +143,26 @@ namespace FacturacionElectronica.UI.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public ActionResult ListarClientes()
         {
             List<Cliente> ListaDeClientes;
@@ -171,60 +191,132 @@ namespace FacturacionElectronica.UI.Controllers
         }
 
 
-        public ActionResult AgregarListaDetalleInventario(int idInventario, int idCliente, int idDetalle, int cantidad, int existencia, string unidadMedida, string detalle, 
-            double precioUnitario)
+
+        public ActionResult AgregarListaDetalleInventario(int idInventario, int idCliente, int idDetalle)
         {
-            LineaDetalle linea = new LineaDetalle();
-            linea.NumeroLinea = 0;
-            linea.Codigo = 0;
-            linea.Cantidad = cantidad;
-            linea.UnidadMedida = unidadMedida;
-            linea.Detalle = detalle;
-            linea.PrecioUnitario = precioUnitario;
-            linea.MontoImpuesto = linea.MontoTotal*0.13;
-            linea.Subtotal = (linea.Cantidad*precioUnitario);
-            linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
-           linea.MontoTotalLinea = 0;
-
-            Repositorio.AgregarLineaDetalle(linea);
-
-            List<LineaDetalle> lista = new List<LineaDetalle>();
-            lista = Repositorio.ObtenerLineas();
-
-            LineaDetalle lineaNueva = new LineaDetalle();
-            lineaNueva = lista.Last();
-            int idLinea = lineaNueva.idLineaDetalle;
-
-            int idDetalleNuevo;
-            if (idDetalle == 0) {
-                DetalleServicio detalleNuevo = new DetalleServicio();
-                detalleNuevo.idLineaDetalle = idLinea;
-                Repositorio.AgregarDetalleServicio(detalleNuevo);
-
-                List<DetalleServicio> listaDetalle = new List<DetalleServicio>();
-                listaDetalle = Repositorio.ObtenerDetalles();
-
-               DetalleServicio cambio = new DetalleServicio();
-                cambio = listaDetalle.Last();
-
-                Repositorio.ModificarDetalle(cambio.id, cambio);
-                idDetalleNuevo = cambio.id;
+            Inventario buscar = new Inventario();
+            buscar = Repositorio.ObtenerInventarioPorId(idInventario);
 
 
-            }
-            else
-            {
-                DetalleServicio detalleNuevo = new DetalleServicio();
-                detalleNuevo.idLineaDetalle = idLinea;
-                detalleNuevo.idDetalleServicio = idDetalle;
-                Repositorio.AgregarDetalleServicio(detalleNuevo);
-                idDetalleNuevo = idDetalle;
-            }
-            
-            idDetalle = 1;
 
-            return RedirectToAction("ListarInventario", "Facturacion", new { @idCliente = idCliente, @idDetalle = idDetalleNuevo });
+            int cantidadMaxima = buscar.Existencia; 
+
+
+
+            return RedirectToAction("AgregarValoresLinea", new { idInventario, idCliente, idDetalle, cantidadMaxima });
         }
+
+
+
+
+        public ActionResult AgregarValoresLinea(int idInventario, int idCliente, int idDetalle, int cantidadMaxima)
+        {
+            AgregarValoresLinea valoresLinea = new AgregarValoresLinea();
+            valoresLinea.idInventario = idInventario;
+            valoresLinea.idCliente = idCliente;
+            valoresLinea.idDetalle = idDetalle;
+
+            ViewBag.cantidadMaxima = cantidadMaxima;
+
+            
+
+            return View(valoresLinea);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarValoresLinea(AgregarValoresLinea valores)
+        {
+            try
+            {
+                Inventario buscar = new Inventario();
+                buscar = Repositorio.ObtenerInventarioPorId(valores.idInventario);
+
+
+                int existencia = buscar.Existencia;
+                string detalle = buscar.Descripcion;
+                double precioUnitario = buscar.PrecioVenta;      
+
+               
+                
+
+                LineaDetalle linea = new LineaDetalle();
+
+                linea.Cantidad = valores.cantidad;
+                linea.UnidadMedida = valores.unidadMedida.ToString();
+                linea.Detalle = detalle;
+                linea.PrecioUnitario = precioUnitario;
+                linea.MontoImpuesto = linea.MontoTotal * 0.13;
+                linea.Subtotal = (linea.Cantidad * precioUnitario);
+                linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
+                linea.MontoTotalLinea = 0;
+
+                Repositorio.AgregarLineaDetalle(linea);
+
+                List<LineaDetalle> lista = new List<LineaDetalle>();
+                lista = Repositorio.ObtenerLineas();
+
+                LineaDetalle lineaNueva = new LineaDetalle();
+                lineaNueva = lista.Last();
+                int idLinea = lineaNueva.idLineaDetalle;
+
+                int idDetalleNuevo;
+                if (valores.idDetalle == 0)
+                {
+                    DetalleServicio detalleNuevo = new DetalleServicio();
+                    detalleNuevo.idLineaDetalle = idLinea;
+                    Repositorio.AgregarDetalleServicio(detalleNuevo);
+
+                    List<DetalleServicio> listaDetalle = new List<DetalleServicio>();
+                    listaDetalle = Repositorio.ObtenerDetalles();
+
+                    DetalleServicio cambio = new DetalleServicio();
+                    cambio = listaDetalle.Last();
+
+                    Repositorio.ModificarDetalle(cambio.id, cambio);
+                    idDetalleNuevo = cambio.id;
+
+
+                }
+                else
+                {
+                    DetalleServicio detalleNuevo = new DetalleServicio();
+                    detalleNuevo.idLineaDetalle = idLinea;
+                    detalleNuevo.idDetalleServicio = valores.idDetalle;
+                    Repositorio.AgregarDetalleServicio(detalleNuevo);
+                    idDetalleNuevo = valores.idDetalle;
+                }
+
+                
+
+                return RedirectToAction("ListarInventario", "Facturacion", new { valores.idCliente, @idDetalle = idDetalleNuevo });
+            
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult NoExistenClientes()
         {
