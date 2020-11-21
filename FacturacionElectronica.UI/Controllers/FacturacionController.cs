@@ -34,7 +34,7 @@ namespace FacturacionElectronica.UI.Controllers
             return View(ListaDeFacturas);
         }
 
-        public ActionResult Consultar(int id)
+        public ActionResult ConsultarFactura(int id)
 
         {
             List<Factura> ListaDeFacturas;
@@ -45,7 +45,7 @@ namespace FacturacionElectronica.UI.Controllers
 
             if (ListaDeFacturas.Count.Equals(0))
             {
-                return RedirectToAction("NoExiste", "Facturacion");
+                return RedirectToAction("NoExisteFactura", "Facturacion");
             }
             else
             {
@@ -54,13 +54,61 @@ namespace FacturacionElectronica.UI.Controllers
             return View(factura);
         }
 
-        public ActionResult NoExiste(int id)
+        public ActionResult NoExisteFactura()
 
         {
 
             return View();
         }
 
+        public ActionResult EliminarFactura(int id)
+
+        {
+            Factura factura;
+            factura = Repositorio.ObtenerFacturaPorId(id);
+
+            return View(factura);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EliminarFactura(int id, IFormCollection collection)
+        {
+            try
+            {
+                Factura factura = Repositorio.ObtenerFacturaPorId(id);
+
+                Repositorio.EliminarFactura(factura);
+                return RedirectToAction(nameof(ListarFacturas));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
+
+
+
+
+
+        public ActionResult ListarClientes()
+        {
+            List<Cliente> ListaDeClientes;
+            ListaDeClientes = Repositorio.ObtenerClientes();
+
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+
+            if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
+            else
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion"); }
+
+            return View(ListaDeClientes);
+        }
 
         public ActionResult ConsultarCliente(int id)
 
@@ -89,6 +137,33 @@ namespace FacturacionElectronica.UI.Controllers
             return View();
         }
 
+        public ActionResult NoExistenClientes()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public ActionResult ListarInventario(int idFactura)
+        {
+            List<Inventario> ListaDeInventario;
+            ListaDeInventario = Repositorio.ObtenerInventario();
+
+            TempData["idFactura"] = idFactura;
+
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
+
+            return View(ListaDeInventario);
+        }
 
         public ActionResult ConsultarInventario(int codigo)
 
@@ -115,30 +190,14 @@ namespace FacturacionElectronica.UI.Controllers
         {
             return View();
         }
-
-        public ActionResult Eliminar(int id)
-
+        public ActionResult NoExistenInventarios()
         {
-            Factura factura;
-            factura = Repositorio.ObtenerFacturaPorId(id);
-
-            return View(factura);
+            return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Eliminar(int id, IFormCollection collection)
-        {
-            try
-            {
-                Factura factura = Repositorio.ObtenerFacturaPorId(id);
 
-                Repositorio.EliminarFactura(factura);
-                return RedirectToAction(nameof(ListarFacturas));
-            }
-            catch
-            {
-                return View();
-            }
+        public ActionResult NoExisteInventario()
+        {
+            return View();
         }
 
 
@@ -147,86 +206,50 @@ namespace FacturacionElectronica.UI.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public ActionResult ListarClientes()
+        public ActionResult AgregarFactura(int idCliente)
         {
-            List<Cliente> ListaDeClientes;
-            ListaDeClientes = Repositorio.ObtenerClientes();
+            Factura factura = new Factura();
+            factura.idCliente = idCliente;
+            factura.FechaEmision = DateTime.Now;
 
-            List<Inventario> ListaDeInventario;
-            ListaDeInventario = Repositorio.ObtenerInventario();
+            Repositorio.AgregarFactura(factura);
 
-            if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
-            else
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion");}
+            List<Factura> lista = new List<Factura>();
+            lista = Repositorio.ObtenerFactura();
+            Factura facturaAModificar = new Factura();
+            facturaAModificar = lista.Last();
 
-            return View(ListaDeClientes);
+            Repositorio.ModificarFactura(facturaAModificar.Clave, facturaAModificar);
+
+            List<Factura> lista2 = new List<Factura>();
+            lista2 = Repositorio.ObtenerFactura();
+            Factura Ultimafactura = new Factura();
+            Ultimafactura = lista2.Last();
+
+
+            return RedirectToAction("ListarInventario", "Facturacion", new { @idFactura = Ultimafactura.idFactura });
         }
 
-        public ActionResult ListarInventario( int idCliente, int idDetalle)
-        {
-            List<Inventario> ListaDeInventario;
-            ListaDeInventario = Repositorio.ObtenerInventario();
-
-            TempData["idCliente"] = idCliente;
-            TempData["idDetalle"] = idDetalle;
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
-
-            return View(ListaDeInventario);
-        }
-
-
-
-        public ActionResult AgregarListaDetalleInventario(int idInventario, int idCliente, int idDetalle)
-        {
-            Inventario buscar = new Inventario();
-            buscar = Repositorio.ObtenerInventarioPorId(idInventario);
-
-
-
-            int cantidadMaxima = buscar.Existencia; 
-
-
-
-            return RedirectToAction("AgregarValoresLinea", new { idInventario, idCliente, idDetalle, cantidadMaxima });
-        }
-
-
-
-
-        public ActionResult AgregarValoresLinea(int idInventario, int idCliente, int idDetalle, int cantidadMaxima)
+        public ActionResult AgregarCantidadUnidad(int idFactura, int idInventario)
         {
             AgregarValoresLinea valoresLinea = new AgregarValoresLinea();
             valoresLinea.idInventario = idInventario;
-            valoresLinea.idCliente = idCliente;
-            valoresLinea.idDetalle = idDetalle;
+            valoresLinea.idFactura = idFactura;
 
-            ViewBag.cantidadMaxima = cantidadMaxima;
+            Inventario producto = new Inventario();
+            producto = Repositorio.ObtenerInventarioPorId(idInventario);
 
-            
+
+            ViewBag.cantidadMaxima = producto.Existencia;
+
+
 
             return View(valoresLinea);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarValoresLinea(AgregarValoresLinea valores)
+        public ActionResult AgregarCantidadUnidad(AgregarValoresLinea valores)
         {
             try
             {
@@ -236,20 +259,21 @@ namespace FacturacionElectronica.UI.Controllers
 
                 int existencia = buscar.Existencia;
                 string detalle = buscar.Descripcion;
-                double precioUnitario = buscar.PrecioVenta;      
+                double precioUnitario = buscar.PrecioVenta;
 
-               
-                
+
+
 
                 LineaDetalle linea = new LineaDetalle();
-
+                linea.idFactura = valores.idFactura;
                 linea.Cantidad = valores.cantidad;
                 linea.UnidadMedida = valores.unidadMedida.ToString();
                 linea.Detalle = detalle;
                 linea.PrecioUnitario = precioUnitario;
-                linea.MontoImpuesto = linea.MontoTotal * 0.13;
                 linea.Subtotal = (linea.Cantidad * precioUnitario);
-                linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
+                linea.MontoImpuesto = linea.Subtotal * 0.13;
+               linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
+                
                 linea.MontoTotalLinea = 0;
 
                 Repositorio.AgregarLineaDetalle(linea);
@@ -261,37 +285,12 @@ namespace FacturacionElectronica.UI.Controllers
                 lineaNueva = lista.Last();
                 int idLinea = lineaNueva.idLineaDetalle;
 
-                int idDetalleNuevo;
-                if (valores.idDetalle == 0)
-                {
-                    DetalleServicio detalleNuevo = new DetalleServicio();
-                    detalleNuevo.idLineaDetalle = idLinea;
-                    Repositorio.AgregarDetalleServicio(detalleNuevo);
-
-                    List<DetalleServicio> listaDetalle = new List<DetalleServicio>();
-                    listaDetalle = Repositorio.ObtenerDetalles();
-
-                    DetalleServicio cambio = new DetalleServicio();
-                    cambio = listaDetalle.Last();
-
-                    Repositorio.ModificarDetalle(cambio.id, cambio);
-                    idDetalleNuevo = cambio.id;
 
 
-                }
-                else
-                {
-                    DetalleServicio detalleNuevo = new DetalleServicio();
-                    detalleNuevo.idLineaDetalle = idLinea;
-                    detalleNuevo.idDetalleServicio = valores.idDetalle;
-                    Repositorio.AgregarDetalleServicio(detalleNuevo);
-                    idDetalleNuevo = valores.idDetalle;
-                }
 
-                
 
-                return RedirectToAction("ListarInventario", "Facturacion", new { valores.idCliente, @idDetalle = idDetalleNuevo });
-            
+                return RedirectToAction("ListarInventario", "Facturacion", new { valores.idFactura });
+
 
             }
             catch
@@ -301,87 +300,6 @@ namespace FacturacionElectronica.UI.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public ActionResult NoExistenClientes()
-        {
-            return View();
-        }
-
-
-
-
-        public ActionResult NoExistenInventarios()
-        {
-            return View();
-        }
-        public ActionResult NoExisteInventario()
-        {
-            return View();
-        }
-
-        // GET: FacturacionController1/Details/5
-        public ActionResult AgregarLinea(int codigo)
-        {
-            return View();
-        }
-
-        
-        // GET: FacturacionController1/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: FacturacionController1/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: FacturacionController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: FacturacionController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

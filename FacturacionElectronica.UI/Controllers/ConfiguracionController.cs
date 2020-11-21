@@ -14,7 +14,7 @@ namespace FacturacionElectronica.UI.Controllers
     public class ConfiguracionController : Controller
     {
 
-        public async Task<ActionResult> Listar()
+        public ActionResult Listar()
         {
             return View();
         }

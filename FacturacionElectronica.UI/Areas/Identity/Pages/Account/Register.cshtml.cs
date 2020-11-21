@@ -26,6 +26,7 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         private readonly UserManager<Data.Usuario> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly Emisor emisor = new Emisor();
 
         public RegisterModel(
             UserManager<Data.Usuario> userManager,
@@ -102,6 +103,12 @@ namespace FacturacionElectronica.UI.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+          
+
+   
+
+
             if (ModelState.IsValid)
             {
                 var user = new Data.Usuario

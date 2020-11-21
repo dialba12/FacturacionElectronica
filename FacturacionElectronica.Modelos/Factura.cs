@@ -7,7 +7,9 @@ namespace FacturacionElectronica.Modelos
     {
         [Key]
         public int Clave { get; set; }
-        public int idDetalleServicio { get; set; }
+
+        public int idFactura { get; set; }
+        
         public int NumeroConsecutivo { get; set; }
         public DateTime FechaEmision { get; set; }
         public int idUsuario { get; set; }

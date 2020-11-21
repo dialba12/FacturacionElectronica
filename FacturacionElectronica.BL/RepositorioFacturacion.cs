@@ -149,6 +149,18 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
+        public void ModificarFactura(int clave, Factura factura)
+        {
+            Factura facturaPorModificar = ObtenerFacturaPorId(clave);
+            facturaPorModificar.idFactura = facturaPorModificar.Clave;
+            facturaPorModificar.NumeroConsecutivo = facturaPorModificar.Clave;
+            
+            elContextoDeBaseDeDatos.Factura.Update(facturaPorModificar);
+            elContextoDeBaseDeDatos.SaveChanges();
+        }
+
+
+
         public List<Factura> ObtenerFactura()
         {
             List<Factura> ListaDeFacturas;
@@ -157,10 +169,10 @@ namespace FacturacionElectronica.BL
             return ListaDeFacturas;
         }
 
-        public Factura ObtenerFacturaPorId(int id)
+        public Factura ObtenerFacturaPorId(int Clave)
         {
             Factura factura;
-            factura = elContextoDeBaseDeDatos.Factura.Find(id);
+            factura = elContextoDeBaseDeDatos.Factura.Find(Clave);
             return factura;
         }
 
@@ -179,40 +191,16 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-        public void AgregarDetalleServicio(DetalleServicio detalleServicio)
-        {
-            elContextoDeBaseDeDatos.DetalleServicio.Add(detalleServicio);
-            elContextoDeBaseDeDatos.SaveChanges();
-        }
+      
 
-        public List<DetalleServicio> ObtenerDetalles()
-        {
-            List<DetalleServicio> ListaDeDetalles;
-            ListaDeDetalles = elContextoDeBaseDeDatos.DetalleServicio.ToList();
-            return ListaDeDetalles;
-        }
+      
         public void AgregarLineaDetalle(LineaDetalle lineaDetalle)
         {
             elContextoDeBaseDeDatos.LineaDetalle.Add(lineaDetalle);
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-        public DetalleServicio ObtenerDetallePorId(int id)
-        {
-            DetalleServicio detalle;
-            detalle= elContextoDeBaseDeDatos.DetalleServicio.Find(id);
-            return detalle;
-        }
-
-        public void ModificarDetalle(int id, DetalleServicio detalle)
-        {
-            DetalleServicio detallePorModificar = ObtenerDetallePorId(id);
-            detallePorModificar.idDetalleServicio = detallePorModificar.id;
-            elContextoDeBaseDeDatos.DetalleServicio.Update(detallePorModificar);
-            elContextoDeBaseDeDatos.SaveChanges();
-
-
-        }
+     
 
 
 
@@ -222,7 +210,14 @@ namespace FacturacionElectronica.BL
                 ListaDeLineas = elContextoDeBaseDeDatos.LineaDetalle.ToList();
                 return ListaDeLineas;
             }
+
+
+        public void AgregarEmisor(Emisor emisor)
+        {
+            elContextoDeBaseDeDatos.Emisor.Add(emisor);
+            elContextoDeBaseDeDatos.SaveChanges();
         }
+    }
 
 
 

@@ -64,7 +64,7 @@
 
           
             <td >
-                @Html.ActionLink("Seleccionar", "AgregarListaDetalleInventario", new {idInventario = item.idInventario, idCliente = TempData["idCliente"] , idDetalle = TempData["idDetalle"]})
+                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new {idFactura = TempData["idFactura"], idInventario = item.idInventario })
             </td>
 
             

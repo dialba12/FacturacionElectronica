@@ -1,7 +1,7 @@
 ﻿@model FacturacionElectronica.Modelos.AgregarValoresLinea
 
 @{
-    ViewData["Title"] = "AgregarValoresLinea";
+    ViewData["Title"] = "AgregarCantidadUnidad";
 }
 
 <h1>AgregarValoresLinea</h1>
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AgregarValoresLinea">
+        <form asp-action="AgregarCantidadUnidad">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
               
@@ -19,14 +19,10 @@
             </div>
             <div class="form-group">
                
-                <input asp-for="idCliente" class="form-control" type="hidden"/>
+                <input asp-for="idFactura" class="form-control" type="hidden"/>
                 
             </div>
-            <div class="form-group">
-               
-                <input asp-for="idDetalle" class="form-control" type="hidden"/>
-             
-            </div>
+            
             <div class="form-group">
                 <label asp-for="cantidad" class="control-label">Cantidad: </label>
                 <input type="number" min="1" max="@ViewBag.cantidadMaxima" asp-for="cantidad" class="form-control" value=" "/>

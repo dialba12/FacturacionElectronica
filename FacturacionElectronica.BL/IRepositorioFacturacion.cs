@@ -32,20 +32,20 @@ namespace FacturacionElectronica.BL
 
 
         public void AgregarFactura(Factura factura);
+        public void ModificarFactura(int id, Factura factura);
         public List<Factura> ObtenerFactura();
         public Factura ObtenerFacturaPorId(int id);
 
         public List<Factura> ObtenerFacturaPorIdentificacion(int identificacion);
         public void EliminarFactura(Factura id);
 
-        public void AgregarDetalleServicio(DetalleServicio detalleServicio);
-        public List<DetalleServicio> ObtenerDetalles();
-        public DetalleServicio ObtenerDetallePorId(int id);
-
-        public void ModificarDetalle(int id, DetalleServicio detalle);
+      
 
         public void AgregarLineaDetalle(LineaDetalle lineaDetalle);
 
         public List<LineaDetalle> ObtenerLineas();
+
+
+        public void AgregarEmisor(Emisor Emisor);
     }
 }

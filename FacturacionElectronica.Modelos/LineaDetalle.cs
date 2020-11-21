@@ -9,6 +9,7 @@ namespace FacturacionElectronica.Modelos
     {
         [Key]
         public int idLineaDetalle { get; set; }
+        public int idFactura { get; set; }
         public int NumeroLinea { get; set; }
         public int Codigo { get; set; }
         public int Cantidad { get; set; }
