@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace FacturacionElectronica.Modelos
 {
-    class ResumenFactura
+   public class ResumenFactura
     {
+        [Key]
         public int idResumen { get; set; }
         public double TotalVenta { get; set; }
         public double TotalDescuento { get; set; }

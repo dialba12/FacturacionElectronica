@@ -10,7 +10,7 @@
 <h1>Agregar Inventario</h1>
 
 <p>
-    <a asp-action="Create">Procesar Factura</a>
+    @Html.ActionLink("Generar", "AgregarMedioPago", new { idFactura = TempData["idFactura"] });
 
 </p>
 <form action="ConsultarInventario">

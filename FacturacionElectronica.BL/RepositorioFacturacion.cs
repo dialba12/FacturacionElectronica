@@ -154,7 +154,10 @@ namespace FacturacionElectronica.BL
             Factura facturaPorModificar = ObtenerFacturaPorId(clave);
             facturaPorModificar.idFactura = facturaPorModificar.Clave;
             facturaPorModificar.NumeroConsecutivo = facturaPorModificar.Clave;
-            
+            facturaPorModificar.idResumen = factura.idResumen;
+            facturaPorModificar.MedioPago = factura.MedioPago;
+            facturaPorModificar.CondicionVenta = factura.CondicionVenta;
+
             elContextoDeBaseDeDatos.Factura.Update(facturaPorModificar);
             elContextoDeBaseDeDatos.SaveChanges();
         }
@@ -191,34 +194,42 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-      
 
-      
+
+
         public void AgregarLineaDetalle(LineaDetalle lineaDetalle)
         {
             elContextoDeBaseDeDatos.LineaDetalle.Add(lineaDetalle);
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-     
 
 
 
-            public List<LineaDetalle> ObtenerLineas()
-            {
-                List<LineaDetalle> ListaDeLineas;
-                ListaDeLineas = elContextoDeBaseDeDatos.LineaDetalle.ToList();
-                return ListaDeLineas;
-            }
 
-
-        public void AgregarEmisor(Emisor emisor)
+        public List<LineaDetalle> ObtenerLineas(int idFactura)
         {
-            elContextoDeBaseDeDatos.Emisor.Add(emisor);
+            var resultado = from listaLineas in elContextoDeBaseDeDatos.LineaDetalle
+                            where listaLineas.idFactura == idFactura
+                            select listaLineas;
+            return resultado.ToList();
+        }
+
+        public void AgregarResumen(ResumenFactura resumen)
+        {
+            elContextoDeBaseDeDatos.ResumenFactura.Add(resumen);
             elContextoDeBaseDeDatos.SaveChanges();
         }
+        public List<ResumenFactura> ObtenerResumenes()
+        {
+            List<ResumenFactura> ListaDeResumenes;
+            ListaDeResumenes = elContextoDeBaseDeDatos.ResumenFactura.ToList();
+
+            return ListaDeResumenes;
+        }
+
     }
 
 
 
-    }
+}

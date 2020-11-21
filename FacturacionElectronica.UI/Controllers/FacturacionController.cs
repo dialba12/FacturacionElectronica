@@ -272,22 +272,11 @@ namespace FacturacionElectronica.UI.Controllers
                 linea.PrecioUnitario = precioUnitario;
                 linea.Subtotal = (linea.Cantidad * precioUnitario);
                 linea.MontoImpuesto = linea.Subtotal * 0.13;
-               linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
-                
+                linea.MontoTotal = (linea.MontoImpuesto + linea.Subtotal);
+
                 linea.MontoTotalLinea = 0;
 
                 Repositorio.AgregarLineaDetalle(linea);
-
-                List<LineaDetalle> lista = new List<LineaDetalle>();
-                lista = Repositorio.ObtenerLineas();
-
-                LineaDetalle lineaNueva = new LineaDetalle();
-                lineaNueva = lista.Last();
-                int idLinea = lineaNueva.idLineaDetalle;
-
-
-
-
 
                 return RedirectToAction("ListarInventario", "Facturacion", new { valores.idFactura });
 
@@ -300,6 +289,105 @@ namespace FacturacionElectronica.UI.Controllers
         }
 
 
-       
+
+
+        public ActionResult AgregarMedioPago(int idFactura)
+        {
+            TempData["idFactura"] = idFactura;
+            Factura facturaAsociada = new Factura();
+            Cliente cliente = new Cliente();
+            List<LineaDetalle> lineasAsociadas = new List<LineaDetalle>();
+            string nombrecliente;
+            double totalImpuestos = 0;
+            double total = 0;
+
+
+            facturaAsociada = Repositorio.ObtenerFacturaPorId(idFactura);
+            cliente = Repositorio.ObtenerClientePorId(facturaAsociada.idCliente);
+            nombrecliente = cliente.Nombre + " " + cliente.PrimerApellido + " " + cliente.SegundoApellido;
+
+            lineasAsociadas = Repositorio.ObtenerLineas(idFactura);
+
+            foreach (var linea in lineasAsociadas)
+            {
+                totalImpuestos += linea.MontoImpuesto;
+                total += linea.MontoTotal;
+            }
+
+            ResumenDeCompra resumenCompra = new ResumenDeCompra();
+
+            resumenCompra.fecha = facturaAsociada.FechaEmision;
+            resumenCompra.cliente = nombrecliente;
+            resumenCompra.consecutivo = facturaAsociada.NumeroConsecutivo;
+            resumenCompra.lineasDetalle = lineasAsociadas;
+            resumenCompra.TotalImpuestos = totalImpuestos;
+            resumenCompra.Total = total;
+
+
+            return View(resumenCompra);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarMedioPago(ResumenDeCompra valores)
+        {
+            
+                return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = TempData["idFactura"], @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
+            
+        }
+
+
+        public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
+        {
+            double TotalVenta = 0;
+            double TotalVentaNeto = 0;
+            double TotalImpuesto = 0;
+            double TotalComprobante = 0;
+
+            var lineasAsociadas = Repositorio.ObtenerLineas(idFactura);
+
+            foreach (var linea in lineasAsociadas)
+            {
+                TotalVenta += linea.MontoTotal;
+                TotalVentaNeto += linea.Subtotal;
+                TotalImpuesto += linea.MontoImpuesto;
+                TotalComprobante += linea.Subtotal;
+            }
+
+
+
+
+            ResumenFactura resumen = new ResumenFactura();
+            resumen.TotalVenta = TotalVenta;
+            resumen.TotalDescuento = 0;
+            resumen.TotalVentaNeto = TotalVentaNeto;
+            resumen.TotalImpuesto = TotalImpuesto;
+            resumen.TotalComprobante = TotalComprobante;
+            Repositorio.AgregarResumen(resumen);
+
+
+
+
+            List<ResumenFactura> listaResumenes = new List<ResumenFactura>();
+            listaResumenes = Repositorio.ObtenerResumenes();
+            ResumenFactura resumenActual = new ResumenFactura();
+            resumenActual = listaResumenes.Last();
+
+            int idResumen = resumenActual.idResumen;
+
+
+            List<Factura> lista = new List<Factura>();
+            lista = Repositorio.ObtenerFactura();
+            Factura facturaAModificar = new Factura();
+            facturaAModificar = lista.Last();
+
+            facturaAModificar.idResumen = idResumen;
+            facturaAModificar.MedioPago = MedioPago;
+            facturaAModificar.CondicionVenta = condicion;
+
+            Repositorio.ModificarFactura(facturaAModificar.idFactura, facturaAModificar);
+
+            return RedirectToAction("ListarFacturas", "Facturacion");
+        }
     }
 }

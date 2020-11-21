@@ -1,0 +1,177 @@
+﻿@model FacturacionElectronica.Modelos.ResumenDeCompra
+
+@{
+    ViewData["Title"] = "AgregarMedioPago";
+}
+
+<h1 style="text-align: center">Detalles de Factura</h1>
+
+<hr />
+<br />
+
+<h3 style="text-align: center">Información de Orden</h3>
+<table class="table" style="float:left">
+    <thead>
+        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.consecutivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cliente)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(model => model.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.consecutivo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.cliente)
+            </td>
+
+        </tr>
+
+    </tbody>
+</table>
+<hr />
+<br />
+<br />
+
+<h3 style="text-align: center">Productos Asociados</h3>
+
+
+<table class="table">
+    <thead>
+        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
+            <th>
+                @Html.DisplayName("Linea")
+            </th>
+            <th>
+                @Html.DisplayName("Cantidad")
+            </th>
+            <th>
+                @Html.DisplayName("Descripción")
+            </th>
+            <th>
+                @Html.DisplayName("Precio Unitario")
+            </th>
+            <th>
+                @Html.DisplayName("Subtotal")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.lineasDetalle)
+        {
+            <tr style="text-align:center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.idLineaDetalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioUnitario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subtotal)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<table class="table" style="float:left">
+    <thead>
+        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
+            <th>
+                @Html.DisplayNameFor(model => model.TotalImpuestos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+          
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(model => model.TotalImpuestos)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Total)
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<hr />
+<br />
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgregarMedioPago">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CondicionVenta" class="control-label"></label>
+                <select id="CondicionVenta" name="CondicionVenta">
+                    <option value="Contado">Contado</option>
+                    <option value="Crédito">Crédito</option>
+                    <option value="Consignación">Consignación</option>
+                    <option value="Apartado">Apartado</option>
+                    <option value="Arrendamiento con opción de compra">Arrendamiento con opción de compra</option>
+                    <option value="Arrendamiento en función financiera">Arrendamiento en función financiera</option>
+                    <option value="Cobro a favor de un tercero">Cobro a favor de un tercero</option>
+                    <option value="Servicios prestados al Estado a crédito">Servicios prestados al Estado a crédito</option>
+                    <option value="Pago del servicios prestado al Estado ">Pago del servicios prestado al Estado </option>
+                    <option value="Otros">Otros</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedioPago" class="control-label"></label>
+                <select id="MedioPago" name="MedioPago">
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Cheque">Cheque</option>
+                    <option value="Transferencia - depósito bancario">Transferencia - Depósito bancario</option>
+                    <option value="Recaudado por terceros">Recaudado por terceros</option>
+                    <option value="Otros">Otros</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

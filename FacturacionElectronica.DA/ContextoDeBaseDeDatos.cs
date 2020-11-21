@@ -20,6 +20,7 @@ namespace FacturacionElectronica.DA
         public DbSet<Factura> Factura { get; set; }
         public DbSet<Emisor> Emisor { get; set; }
         public DbSet<LineaDetalle> LineaDetalle { get; set; }
+        public DbSet<ResumenFactura> ResumenFactura { get; set; }
 
 
     }

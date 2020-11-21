@@ -39,13 +39,16 @@ namespace FacturacionElectronica.BL
         public List<Factura> ObtenerFacturaPorIdentificacion(int identificacion);
         public void EliminarFactura(Factura id);
 
-      
+
 
         public void AgregarLineaDetalle(LineaDetalle lineaDetalle);
+        public List<LineaDetalle> ObtenerLineas(int id);
 
-        public List<LineaDetalle> ObtenerLineas();
+
+        public void AgregarResumen(ResumenFactura resumen);
+        public List<ResumenFactura> ObtenerResumenes();
 
 
-        public void AgregarEmisor(Emisor Emisor);
+       
     }
 }
