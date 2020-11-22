@@ -217,6 +217,8 @@ namespace FacturacionElectronica.UI.Controllers
         public ActionResult AgregarFactura(int idCliente)
         {
             Factura factura = new Factura();
+            string nombreUsuario = User.Identity.Name;
+            factura.idUsuario = Int32.Parse(nombreUsuario);
             factura.idCliente = idCliente;
             factura.FechaEmision = DateTime.Now;
 
@@ -247,12 +249,15 @@ namespace FacturacionElectronica.UI.Controllers
             Inventario producto = new Inventario();
             producto = Repositorio.ObtenerInventarioPorId(idInventario);
 
+            if (producto.Existencia == 0) { return RedirectToAction("NoExistenUnidadesEnInventario", "Facturacion", new { idFactura }); }
+            else
+            {
+                ViewBag.cantidadMaxima = producto.Existencia;
 
-            ViewBag.cantidadMaxima = producto.Existencia;
 
 
-
-            return View(valoresLinea);
+                return View(valoresLinea);
+            }
         }
 
         [HttpPost]
@@ -285,9 +290,13 @@ namespace FacturacionElectronica.UI.Controllers
                 linea.MontoTotalLinea = 0;
 
                 Repositorio.AgregarLineaDetalle(linea);
+                Inventario cambiar = new Inventario();
+                cambiar = Repositorio.ObtenerInventarioPorId(valores.idInventario);
+
+                cambiar.Existencia = cambiar.Existencia - valores.cantidad;
+                Repositorio.ModificarInventario(cambiar.idInventario, cambiar);
 
                 return RedirectToAction("ListarInventario", "Facturacion", new { valores.idFactura });
-
 
             }
             catch
@@ -296,6 +305,12 @@ namespace FacturacionElectronica.UI.Controllers
             }
         }
 
+        public ActionResult NoExistenUnidadesEnInventario(int idFactura)
+        {
+            TempData["idFactura"] = idFactura;
+
+            return View();
+        }
 
 
 
@@ -334,6 +349,7 @@ namespace FacturacionElectronica.UI.Controllers
                 resumenCompra.lineasDetalle = lineasAsociadas;
                 resumenCompra.TotalImpuestos = totalImpuestos;
                 resumenCompra.Total = total;
+                resumenCompra.idFactura = idFactura;
 
 
                 return View(resumenCompra);
@@ -344,8 +360,8 @@ namespace FacturacionElectronica.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AgregarMedioPago(ResumenDeCompra valores)
         {
-
-            return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = TempData["idFactura"], @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
+          
+            return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = valores.idFactura, @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
 
         }
 
@@ -357,7 +373,7 @@ namespace FacturacionElectronica.UI.Controllers
             return View();
         }
 
-            public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
+        public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
         {
             double TotalVenta = 0;
             double TotalVentaNeto = 0;
@@ -407,7 +423,16 @@ namespace FacturacionElectronica.UI.Controllers
 
             Repositorio.ModificarFactura(facturaAModificar.idFactura, facturaAModificar);
 
-            return RedirectToAction("ListarFacturas", "Facturacion");
+            return RedirectToAction("FacturaAgregada", "Facturacion");
+        }
+
+
+        public ActionResult FacturaAgregada()
+
+        {
+            return View();
         }
     }
+
+
 }

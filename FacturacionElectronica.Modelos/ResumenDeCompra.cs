@@ -8,6 +8,8 @@ namespace FacturacionElectronica.Modelos
     public class ResumenDeCompra
     {
         [Display(Name = "Fecha:")]
+        public int idFactura { get; set; }
+        [Display(Name = "Fecha:")]
         public DateTime fecha { get; set; }
 
         [Display(Name = "Cliente:")]

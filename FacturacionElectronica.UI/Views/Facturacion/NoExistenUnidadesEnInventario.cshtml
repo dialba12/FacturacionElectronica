@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "NoExisteInventario";
+}
+
+<h1>No existen unidades de este producto en el inventario</h1>
+
+<div>
+    @Html.ActionLink("Regresar", "ListarInventario", new { idFactura = TempData["idFactura"] })
+</div>

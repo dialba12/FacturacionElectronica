@@ -4,7 +4,7 @@
     ViewData["Title"] = "AgregarMedioPago";
 }
 
-<h1 style="text-align: center">Resumen de compra</h1>
+<h1 style="text-align: center">Resumen de compra  @TempData["idFactura"]</h1>
 
 <h6> Fecha: @Html.DisplayFor(model => model.fecha.Date)</h6>
 <h6> Cliente: @Html.DisplayFor(model => model.cliente)</h6>
@@ -70,7 +70,11 @@
         <form asp-action="AgregarMedioPago">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
+            <div class="form-group">
+               
+                <input asp-for="idFactura" value=@TempData["idFactura"] type="hidden" class="form-control" />
+               
+            </div>
 
             <div class="form-group">
                 <label asp-for="CondicionVenta" class="control-label"></label>
