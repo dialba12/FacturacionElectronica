@@ -41,7 +41,9 @@ namespace FacturacionElectronica.BL.Tests
             var resultado = mockrepositorio.Object.ObtenerClientes();
 
             Assert.IsTrue(resultado.Count() == 1);
+        
         }
+       
 
         [TestMethod()]
         public void AgregarCierreTest()
@@ -96,8 +98,6 @@ namespace FacturacionElectronica.BL.Tests
             cierre.Monto = 1000;
             cierre.IdUsuario = "Edgar";
             cierre.idCierre = 12;
-
-
             var mockcontexto = new Mock<ContextoDeBaseDeDatos>();
             var mockrepositorio = new Mock<IRepositorioFacturacion>();
             mockrepositorio.Setup(a => a.AgregarCierre(cierre));
@@ -108,7 +108,9 @@ namespace FacturacionElectronica.BL.Tests
             var resultado = mockrepositorio.Object.ObtenerCierre();
 
             Assert.IsFalse(resultado == null);
-        }
+         }
+           
+        
 
         [TestMethod()]
         public void AgregarInventarioTest()
@@ -271,7 +273,10 @@ namespace FacturacionElectronica.BL.Tests
 
             Assert.IsTrue(resultado.Count() == 1);
         }
+
+        
+        
     }
 
-
+       
 }

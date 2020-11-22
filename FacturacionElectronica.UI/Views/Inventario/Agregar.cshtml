@@ -4,7 +4,17 @@
     ViewData["Title"] = "Agregar inventario";
 }
 
-<h1>Añadir inventario</h1>
+<h1  class="heading" style="        text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
+        color: #B8240A;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 64px;
+        line-height: 78px;
+    ">
+    Añadir inventario</h1>
 
 <hr />
 <div class="row">
@@ -12,32 +22,61 @@
         <form asp-action="Agregar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Codigo" class="control-label"></label>
-                <input asp-for="Codigo" class="form-control" />
+                <label asp-for="Codigo" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 36px;
+        color: #B8240A;
+"></label>&nbsp;&nbsp;
+                <input asp-for="Codigo" class="rounded border border-danger" />&nbsp;&nbsp;
                 <span asp-validation-for="Codigo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
+                <label asp-for="Descripcion" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 36px;
+        color: #B8240A;
+"></label>&nbsp;&nbsp;
+                <input asp-for="Descripcion" class="rounded border border-danger" />&nbsp;&nbsp;
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecioCosto" class="control-label"></label>
-                <input asp-for="PrecioCosto" class="form-control" />
+                <label asp-for="PrecioCosto" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 36px;
+        color: #B8240A;
+"></label>&nbsp;&nbsp;
+                <input asp-for="PrecioCosto" class="rounded border border-danger" />
                 <span asp-validation-for="PrecioCosto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PrecioVenta" class="control-label"></label>
-                <input asp-for="PrecioVenta" class="form-control" />
+                <label asp-for="PrecioVenta" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 36px;
+        color: #B8240A;
+"></label>&nbsp;&nbsp;
+                <input asp-for="PrecioVenta" class="rounded border border-danger" />
                 <span asp-validation-for="PrecioVenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Existencia" class="control-label"></label>
-                <input asp-for="Existencia" class="form-control" />
+                <label asp-for="Existencia" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 36px;
+        color: #B8240A;
+"></label>&nbsp;&nbsp;
+                <input asp-for="Existencia" class="rounded border border-danger" />
                 <span asp-validation-for="Existencia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary"  style="font-family: Montserrat;
+        font-style: normal;
+        font-weight: 450;
+        font-size: 25px;
+        color: #D6F5FA;
+        line-height: 44px;
+        background: #B8240A;
+        border: 2px solid #000000;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        margin: 10px;" />
             </div>
         </form>
     </div>
