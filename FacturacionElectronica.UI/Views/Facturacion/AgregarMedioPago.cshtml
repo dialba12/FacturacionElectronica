@@ -4,51 +4,13 @@
     ViewData["Title"] = "AgregarMedioPago";
 }
 
-<h1 style="text-align: center">Detalles de Factura</h1>
+<h1 style="text-align: center">Resumen de compra</h1>
 
-<hr />
+<h6> Fecha: @Html.DisplayFor(model => model.fecha.Date)</h6>
+<h6> Cliente: @Html.DisplayFor(model => model.cliente)</h6>
+<h6> Consecutivo: @Html.DisplayFor(model => model.consecutivo)</h6>
+
 <br />
-
-<h3 style="text-align: center">Información de Orden</h3>
-<table class="table" style="float:left">
-    <thead>
-        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
-            <th>
-                @Html.DisplayNameFor(model => model.fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.consecutivo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.cliente)
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr style="text-align:center">
-            <td>
-                @Html.DisplayFor(model => model.fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.consecutivo)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.cliente)
-            </td>
-
-        </tr>
-
-    </tbody>
-</table>
-<hr />
-<br />
-<br />
-
-<h3 style="text-align: center">Productos Asociados</h3>
-
 
 <table class="table">
     <thead>
@@ -57,7 +19,7 @@
                 @Html.DisplayName("Linea")
             </th>
             <th>
-                @Html.DisplayName("Cantidad")
+                @Html.DisplayName("Cant")
             </th>
             <th>
                 @Html.DisplayName("Descripción")
@@ -96,37 +58,13 @@
 </table>
 
 
-<table class="table" style="float:left">
-    <thead>
-        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
-            <th>
-                @Html.DisplayNameFor(model => model.TotalImpuestos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-          
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-        <tr style="text-align:center">
-            <td>
-                @Html.DisplayFor(model => model.TotalImpuestos)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Total)
-            </td>
-        </tr>
-
-    </tbody>
-</table>
-<hr />
-<br />
+<h6> Total Impuestos: @Html.DisplayFor(model => model.TotalImpuestos)</h6>
+<h6> Total: @Html.DisplayFor(model => model.Total)</h6>
 <br />
 <hr />
+
+<br />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AgregarMedioPago">
@@ -162,14 +100,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Generar Factura" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "ListarInventario", new { idFactura = TempData["idFactura"] })
             </div>
         </form>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+   
 </div>
 
 @section Scripts {

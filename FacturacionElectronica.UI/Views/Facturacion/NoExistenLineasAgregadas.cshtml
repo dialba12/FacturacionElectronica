@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "NoExisteInventario";
+}
+
+<h1>Aún no se han agregado productos a la factura</h1>
+
+<div>
+    @Html.ActionLink("Regresar", "ListarInventario", new { idFactura = TempData["idFactura"] })
+</div>

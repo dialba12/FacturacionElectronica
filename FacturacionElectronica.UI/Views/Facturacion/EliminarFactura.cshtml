@@ -1,0 +1,17 @@
+﻿@model FacturacionElectronica.Modelos.Factura
+
+@{
+    ViewData["Title"] = "EliminarFactura";
+}
+
+
+<h3>Estás seguro de eliminar la factura  @Html.DisplayFor(model => model.idFactura) ?</h3>
+
+<div>
+    </dl>
+
+    <form asp-action="EliminarFactura">
+        <input type="submit" value="Si" class="btn btn-danger" />
+        <a asp-action="ListarFacturas" class="btn btn-success">No</a>
+    </form>
+</div>

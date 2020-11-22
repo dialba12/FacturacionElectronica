@@ -31,7 +31,14 @@ namespace FacturacionElectronica.UI.Controllers
             List<Factura> ListaDeFacturas;
             ListaDeFacturas = Repositorio.ObtenerFactura();
 
-            return View(ListaDeFacturas);
+            List<Factura> ListaDeFacturasAEnviar = new List<Factura>();
+
+            foreach (var factura in ListaDeFacturas)
+            {
+
+                if (factura.idResumen != 0) { ListaDeFacturasAEnviar.Add(factura); }
+            }
+            return View(ListaDeFacturasAEnviar);
         }
 
         public ActionResult ConsultarFactura(int id)
@@ -76,9 +83,9 @@ namespace FacturacionElectronica.UI.Controllers
         {
             try
             {
-                Factura factura = Repositorio.ObtenerFacturaPorId(id);
+                Factura cliente = Repositorio.ObtenerFacturaPorId(id);
 
-                Repositorio.EliminarFactura(factura);
+                Repositorio.EliminarFactura(cliente);
                 return RedirectToAction(nameof(ListarFacturas));
             }
             catch
@@ -159,6 +166,7 @@ namespace FacturacionElectronica.UI.Controllers
             ListaDeInventario = Repositorio.ObtenerInventario();
 
             TempData["idFactura"] = idFactura;
+            ViewBag.idFactura = idFactura;
 
             if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
 
@@ -293,6 +301,7 @@ namespace FacturacionElectronica.UI.Controllers
 
         public ActionResult AgregarMedioPago(int idFactura)
         {
+
             TempData["idFactura"] = idFactura;
             Factura facturaAsociada = new Factura();
             Cliente cliente = new Cliente();
@@ -308,36 +317,47 @@ namespace FacturacionElectronica.UI.Controllers
 
             lineasAsociadas = Repositorio.ObtenerLineas(idFactura);
 
-            foreach (var linea in lineasAsociadas)
+            if (lineasAsociadas.Count == 0) { return RedirectToAction("NoExistenLineasAgregadas", "Facturacion", new { idFactura }); }
+            else
             {
-                totalImpuestos += linea.MontoImpuesto;
-                total += linea.MontoTotal;
+                foreach (var linea in lineasAsociadas)
+                {
+                    totalImpuestos += linea.MontoImpuesto;
+                    total += linea.MontoTotal;
+                }
+
+                ResumenDeCompra resumenCompra = new ResumenDeCompra();
+
+                resumenCompra.fecha = facturaAsociada.FechaEmision;
+                resumenCompra.cliente = nombrecliente;
+                resumenCompra.consecutivo = facturaAsociada.NumeroConsecutivo;
+                resumenCompra.lineasDetalle = lineasAsociadas;
+                resumenCompra.TotalImpuestos = totalImpuestos;
+                resumenCompra.Total = total;
+
+
+                return View(resumenCompra);
             }
-
-            ResumenDeCompra resumenCompra = new ResumenDeCompra();
-
-            resumenCompra.fecha = facturaAsociada.FechaEmision;
-            resumenCompra.cliente = nombrecliente;
-            resumenCompra.consecutivo = facturaAsociada.NumeroConsecutivo;
-            resumenCompra.lineasDetalle = lineasAsociadas;
-            resumenCompra.TotalImpuestos = totalImpuestos;
-            resumenCompra.Total = total;
-
-
-            return View(resumenCompra);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AgregarMedioPago(ResumenDeCompra valores)
         {
-            
-                return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = TempData["idFactura"], @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
-            
+
+            return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = TempData["idFactura"], @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
+
         }
 
 
-        public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
+        public ActionResult NoExistenLineasAgregadas(int idFactura)
+        {
+            TempData["idFactura"] = idFactura;
+
+            return View();
+        }
+
+            public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
         {
             double TotalVenta = 0;
             double TotalVentaNeto = 0;

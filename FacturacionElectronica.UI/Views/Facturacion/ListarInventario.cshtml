@@ -7,10 +7,10 @@
 @{
 
 }
-<h1>Agregar Inventario</h1>
+<h1>Selección de Productos</h1>
 
 <p>
-    @Html.ActionLink("Generar", "AgregarMedioPago", new { idFactura = TempData["idFactura"] });
+    @Html.ActionLink("Procesar Factura", "AgregarMedioPago", new { idFactura = TempData["idFactura"] })
 
 </p>
 <form action="ConsultarInventario">
@@ -26,48 +26,48 @@
     <thead>
         <tr>
 
-            
 
+            <th>
+                @Html.DisplayName("Cant")
+            </th>
             <th>
                 @Html.DisplayName("Descripción")
             </th>
             <th>
                 @Html.DisplayName("Precio venta sin IVA")
             </th>
-            <th>
-                @Html.DisplayName("Existencia")
-            </th>
-            
+
 
             <th>
-               
+                
             </th>
-           
+
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
         <tr>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Existencia)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrecioVenta)
             </td>
+
+
+
+
+
             <td>
-                @Html.DisplayFor(modelItem => item.Existencia)
-            </td>
-          
-
-
-          
-            <td >
-                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new {idFactura = TempData["idFactura"], idInventario = item.idInventario })
+                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = item.idInventario })
             </td>
 
-            
+
         </tr>
         }
     </tbody>

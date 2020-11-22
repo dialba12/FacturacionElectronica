@@ -26,7 +26,7 @@ namespace FacturacionElectronica.Modelos
         public double PrecioVenta { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Existencia:")]
+        [Display(Name = "Cant.")]
         public int Existencia { get; set; }
     }
 }
