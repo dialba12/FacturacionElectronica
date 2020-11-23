@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "Agregar";
 }
-
-<h1  class="heading" style="        text-align: center;
+    <center>
+        <h1 class="heading" style="        text-align: center;
         margin: -19px 0 0;
         margin-top: 20px;
         color: #B8240A;
@@ -13,135 +13,141 @@
         font-style: normal;
         font-size: 64px;
         line-height: 78px;
-    " >Añadir cliente</h1>
+    ">
+            Añadir cliente
+        </h1>
 
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Agregar">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"   style="        font-family: Montserrat;
+
+        <div class="row" style="text-align:center; align-content:center; vertical-align:central">
+            <div class="col-md-4" style="text-align:center;">
+                <form asp-action="Agregar">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Nombre" class="rounded border border-danger" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="PrimerApellido" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Nombre" class="rounded border border-danger" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PrimerApellido" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="PrimerApellido" class="rounded border border-danger" />
-                <span asp-validation-for="PrimerApellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SegundoApellido" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="PrimerApellido" class="rounded border border-danger" />
+                        <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SegundoApellido" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="SegundoApellido" class="rounded border border-danger" />
-                <span asp-validation-for="SegundoApellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Identificacion" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="SegundoApellido" class="rounded border border-danger" />
+                        <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Identificacion" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Identificacion" class="rounded border border-danger" />
-                <span asp-validation-for="Identificacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <select id="TipoIdentificacion" name="TipoIdentificacion">
-                    <option value="01">Cédula Física</option>
-                    <option value="02">Cédula Jurídica</option>
-                    <option value="03">DIMEX</option>
-                    <option value="04">NITE</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Identificacion" class="rounded border border-danger" />
+                        <span asp-validation-for="Identificacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoIdentificacion" class="control-label" style="   font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
+        color: #B8240A;"> </label>
+                        <select id="TipoIdentificacion" name="TipoIdentificacion">
+                            <option value="01">Cédula Física</option>
+                            <option value="02">Cédula Jurídica</option>
+                            <option value="03">DIMEX</option>
+                            <option value="04">NITE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Correo" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Correo" class="rounded border border-danger" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Provincia" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Correo" class="rounded border border-danger" />
+                        <span asp-validation-for="Correo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Provincia" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Provincia" class="rounded border border-danger" />
-                <span asp-validation-for="Provincia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Canton" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Provincia" class="rounded border border-danger" />
+                        <span asp-validation-for="Provincia" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Canton" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Canton" class="rounded border border-danger" />
-                <span asp-validation-for="Canton" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Distrito" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Canton" class="rounded border border-danger" />
+                        <span asp-validation-for="Canton" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Distrito" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Distrito" class="rounded border border-danger" />
-                <span asp-validation-for="Distrito" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="OtrasSenas" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="Distrito" class="rounded border border-danger" />
+                        <span asp-validation-for="Distrito" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="OtrasSenas" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="OtrasSenas" class="rounded border border-danger" />
-                <span asp-validation-for="OtrasSenas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"  style="        font-family: Montserrat;
+                        <input asp-for="OtrasSenas" class="rounded border border-danger" />
+                        <span asp-validation-for="OtrasSenas" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Telefono" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
-                <input asp-for="Telefono" class="rounded border border-danger" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
+                        <input asp-for="Telefono" class="rounded border border-danger" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
         font-style: normal;
         font-weight: 450;
-        font-size: 25px;
+        font-size: 15px;
         color: #D6F5FA;
         line-height: 44px;
         background: #B8240A;
         border: 2px solid #000000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin: 10px;"/>
+        margin: 10px;" />
+                    </div>
+                </form>
+
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+    </center>
 
-<div>
-    <a asp-action="Listar" >Regresar</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

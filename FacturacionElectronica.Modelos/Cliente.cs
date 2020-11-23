@@ -15,7 +15,7 @@ namespace FacturacionElectronica.Modelos
         public int Identificacion { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
-        [Display(Name = "Tipo de identificación")]
+        [Display(Name = "Tipo de identificación: ")]
         public TipoDeIdentificacion TipoIdentificacion { get; set; }
 
         [Required(ErrorMessage = "Este dato es obligatorio")]
