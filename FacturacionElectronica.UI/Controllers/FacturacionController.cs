@@ -23,9 +23,6 @@ namespace FacturacionElectronica.UI.Controllers
         {
             Repositorio = repositorio;
         }
-
-
-
         public ActionResult ListarFacturas()
         {
             List<Factura> ListaDeFacturas;
@@ -40,7 +37,6 @@ namespace FacturacionElectronica.UI.Controllers
             }
             return View(ListaDeFacturasAEnviar);
         }
-
         public ActionResult ConsultarFactura(int id)
 
         {
@@ -60,14 +56,12 @@ namespace FacturacionElectronica.UI.Controllers
             }
             return View(factura);
         }
-
         public ActionResult NoExisteFactura()
 
         {
 
             return View();
         }
-
         public ActionResult EliminarFactura(int id)
 
         {
@@ -76,7 +70,6 @@ namespace FacturacionElectronica.UI.Controllers
 
             return View(factura);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EliminarFactura(int id, IFormCollection collection)
@@ -93,15 +86,6 @@ namespace FacturacionElectronica.UI.Controllers
                 return View();
             }
         }
-
-
-
-
-
-
-
-
-
         public ActionResult ListarClientes()
         {
             List<Cliente> ListaDeClientes;
@@ -116,7 +100,6 @@ namespace FacturacionElectronica.UI.Controllers
 
             return View(ListaDeClientes);
         }
-
         public ActionResult ConsultarCliente(int id)
 
         {
@@ -136,30 +119,16 @@ namespace FacturacionElectronica.UI.Controllers
             }
             return View(cliente);
         }
-
         public ActionResult NoExisteCliente(int id)
 
         {
 
             return View();
         }
-
         public ActionResult NoExistenClientes()
         {
             return View();
         }
-
-
-
-
-
-
-
-
-
-
-
-
         public ActionResult ListarInventario(int idFactura)
         {
             List<Inventario> ListaDeInventario;
@@ -172,7 +141,6 @@ namespace FacturacionElectronica.UI.Controllers
 
             return View(ListaDeInventario);
         }
-
         public ActionResult ConsultarInventario(int codigo)
 
         {
@@ -192,7 +160,6 @@ namespace FacturacionElectronica.UI.Controllers
             }
             return View(inventario);
         }
-
         public ActionResult NoExisteInventario(int id)
 
         {
@@ -202,18 +169,10 @@ namespace FacturacionElectronica.UI.Controllers
         {
             return View();
         }
-
         public ActionResult NoExisteInventario()
         {
             return View();
         }
-
-
-
-
-
-
-
         public ActionResult AgregarFactura(int idCliente)
         {
             Factura factura = new Factura();
@@ -239,7 +198,6 @@ namespace FacturacionElectronica.UI.Controllers
 
             return RedirectToAction("ListarInventario", "Facturacion", new { @idFactura = Ultimafactura.idFactura });
         }
-
         public ActionResult AgregarCantidadUnidad(int idFactura, int idInventario)
         {
             AgregarValoresLinea valoresLinea = new AgregarValoresLinea();
@@ -259,7 +217,6 @@ namespace FacturacionElectronica.UI.Controllers
                 return View(valoresLinea);
             }
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AgregarCantidadUnidad(AgregarValoresLinea valores)
@@ -304,16 +261,12 @@ namespace FacturacionElectronica.UI.Controllers
                 return View();
             }
         }
-
         public ActionResult NoExistenUnidadesEnInventario(int idFactura)
         {
             TempData["idFactura"] = idFactura;
 
             return View();
         }
-
-
-
         public ActionResult AgregarMedioPago(int idFactura)
         {
 
@@ -355,7 +308,6 @@ namespace FacturacionElectronica.UI.Controllers
                 return View(resumenCompra);
             }
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AgregarMedioPago(ResumenDeCompra valores)
@@ -364,15 +316,12 @@ namespace FacturacionElectronica.UI.Controllers
             return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = valores.idFactura, @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
 
         }
-
-
         public ActionResult NoExistenLineasAgregadas(int idFactura)
         {
             TempData["idFactura"] = idFactura;
 
             return View();
         }
-
         public ActionResult GenerarFactura(int idFactura, string MedioPago, string condicion)
         {
             double TotalVenta = 0;
@@ -422,11 +371,10 @@ namespace FacturacionElectronica.UI.Controllers
             facturaAModificar.CondicionVenta = condicion;
 
             Repositorio.ModificarFactura(facturaAModificar.idFactura, facturaAModificar);
+            Repositorio.GenerarXml(idFactura);
 
             return RedirectToAction("FacturaAgregada", "Facturacion");
         }
-
-
         public ActionResult FacturaAgregada()
 
         {

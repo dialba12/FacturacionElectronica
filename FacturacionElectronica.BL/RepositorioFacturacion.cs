@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace FacturacionElectronica.BL
 {
@@ -43,7 +44,6 @@ namespace FacturacionElectronica.BL
                             select listaClientes;
             return resultado.ToList();
         }
-
         public void ModificarCliente(int id, Cliente cliente)
         {
             Cliente ClientePorModificar = ObtenerClientePorId(id);
@@ -134,7 +134,6 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Inventario.Remove(inventario);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
         public List<Inventario> ObtenerInventarioPorCodigo(int codigo)
         {
             var resultado = from listaInventario in elContextoDeBaseDeDatos.Inventario
@@ -148,7 +147,6 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Factura.Add(factura);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
         public void ModificarFactura(int clave, Factura factura)
         {
             Factura facturaPorModificar = ObtenerFacturaPorId(clave);
@@ -161,9 +159,6 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.Factura.Update(facturaPorModificar);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
-
-
         public List<Factura> ObtenerFactura()
         {
             List<Factura> ListaDeFacturas;
@@ -171,15 +166,12 @@ namespace FacturacionElectronica.BL
 
             return ListaDeFacturas;
         }
-
         public Factura ObtenerFacturaPorId(int Clave)
         {
             Factura factura;
             factura = elContextoDeBaseDeDatos.Factura.Find(Clave);
             return factura;
         }
-
-
         public List<Factura> ObtenerFacturaPorIdentificacion(int clave)
         {
             var resultado = from listaFacturas in elContextoDeBaseDeDatos.Factura
@@ -187,26 +179,17 @@ namespace FacturacionElectronica.BL
                             select listaFacturas;
             return resultado.ToList();
         }
-
         public void EliminarFactura(Factura id)
         {
             elContextoDeBaseDeDatos.Factura.Remove(id);
             elContextoDeBaseDeDatos.SaveChanges();
         }
 
-
-
-
         public void AgregarLineaDetalle(LineaDetalle lineaDetalle)
         {
             elContextoDeBaseDeDatos.LineaDetalle.Add(lineaDetalle);
             elContextoDeBaseDeDatos.SaveChanges();
         }
-
-
-
-
-
         public List<LineaDetalle> ObtenerLineas(int idFactura)
         {
             var resultado = from listaLineas in elContextoDeBaseDeDatos.LineaDetalle
@@ -228,6 +211,130 @@ namespace FacturacionElectronica.BL
             return ListaDeResumenes;
         }
 
+        public void GenerarXml(int id)
+        {
+            Factura DatosFactura = ObtenerFacturaPorId(id);
+
+            Cliente cliente = ObtenerClientePorId(DatosFactura.idCliente);
+
+            ResumenFactura resumen = elContextoDeBaseDeDatos.ResumenFactura.Find(DatosFactura.idResumen);
+
+            XDocument factura = new XDocument(new XDeclaration("1.0", "utf-16", null),
+                                                new XElement("MensajeHacienda",
+                                                    new XElement("annotation"),
+                                                    new XElement("complexType",
+                                                        new XElement("sequence",
+                                                            new XElement("Clave"),
+                                                            new XElement("NombreEmisor"),
+                                                            new XElement("TipoIdentificacionEmisor"),
+                                                            new XElement("NumeroCedulaEmisor"),
+                                                            new XElement("NombreReceptor"),
+                                                            new XElement("TipoIdentificacionReceptor"),
+                                                            new XElement("NumeroCedulaReceptor"),
+                                                            new XElement("Mensaje"),
+                                                            new XElement("DetalleMensaje"),
+                                                            new XElement("MontoTotalImpuesto"),
+                                                            new XElement("TotalFactura")
+                                                            ))));
+
+            XElement bloqueClave = (factura.Descendants("Clave").Last());
+            bloqueClave.Add(new XElement("annotation",
+                                new XElement("documentation", "ClaveNumericaDelComprobante")),
+                            new XElement("simpleType",
+                                new XElement("restriction",
+                                    new XElement("pattern"))));
+
+            XElement bloqueNombreEmisor = (factura.Descendants("NombreEmisor").Last());
+            bloqueNombreEmisor.Add(new XElement("annotation",
+                                        new XElement("documentation", cliente.Nombre + " " + cliente.PrimerApellido + " " + cliente.SegundoApellido)),
+                                   new XElement("simpleType",
+                                        new XElement("restriction",
+                                            new XElement("pattern"))));
+
+            XElement bloqueteTipoDeIdentificacionEmisor = (factura.Descendants("TipoIdentificacionEmisor").Last());
+            bloqueteTipoDeIdentificacionEmisor.Add(new XElement("annotation",
+                                                        new XElement("documentation", cliente.TipoIdentificacion)),
+                                                    new XElement("simpleType",
+                                                        new XElement("restriction",
+                                                            new XElement("enumeration", "value=01",
+                                                                new XElement("annotation",
+                                                                    new XElement("documentation", "Cedula Fisica"))),
+                                                            new XElement("enumeration", "value=02",
+                                                                new XElement("annotation",
+                                                                    new XElement("documentation", "Cedula Juridica"))),
+                                                            new XElement("enumeration", "value=03",
+                                                                new XElement("annotation",
+                                                                    new XElement("documentation", "DIMEX"))),
+                                                            new XElement("enumeration", "value=04",
+                                                                new XElement("annotation",
+                                                                    new XElement("documentation", "NITE"))),
+                                                            new XElement("enumeration", "value=05",
+                                                                new XElement("annotation",
+                                                                    new XElement("documentation", "Otros"))))));
+
+            XElement bloqueIdentificacionEmisor = (factura.Descendants("NumeroCedulaEmisor").Last());
+            bloqueIdentificacionEmisor.Add(new XElement("annotation",
+                                                new XElement("documentation", cliente.Identificacion)),
+                                            new XElement("simpleType",
+                                                new XElement("restriction",
+                                                    new XElement("maxLength", "value=12"),
+                                                    new XElement("pattern", ""))));
+
+            XElement bloqueNombreReceptor = (factura.Descendants("NombreReceptor").Last());
+            bloqueNombreReceptor.Add(new XElement("annotation",
+                                            new XElement("documentation", cliente.Nombre + " " + cliente.PrimerApellido + " " + cliente.SegundoApellido)),
+                                        new XElement("simpleType",
+                                            new XElement("restriction",
+                                                new XElement("maxLength", "value=100"),
+                                                new XElement("maxLength", "value=0"))));
+
+            XElement bloqueTipoIdentificacionReceptor = (factura.Descendants("TipoIdentificacionReceptor").Last());
+            bloqueTipoIdentificacionReceptor.Add(new XElement("annotation",
+                                                    new XElement("documentation", cliente.TipoIdentificacion)),
+                                                new XElement("simpleType",
+                                                    new XElement("restriction",
+                                                    new XElement("enumeration", "value=01",
+                                                        new XElement("annotation",
+                                                            new XElement("documentation", "Cedula Fisica"))),
+                                                    new XElement("enumeration", "value=02",
+                                                        new XElement("annotation",
+                                                            new XElement("documentation", "Cedula Juridica"))),
+                                                    new XElement("enumeration", "value=03",
+                                                        new XElement("annotation",
+                                                            new XElement("documentation", "DIMEX"))),
+                                                    new XElement("enumeration", "value=04",
+                                                        new XElement("annotation",
+                                                            new XElement("documentation", "NITE"))),
+                                                    new XElement("enumeration", "value=05",
+                                                        new XElement("annotation",
+                                                            new XElement("documentation", "Otros"))))));
+
+            XElement bloqueNumeroCedulaReceptor = (factura.Descendants("NumeroCedulaReceptor").Last());
+            bloqueNumeroCedulaReceptor.Add(new XElement("annotation",
+                                                new XElement("documentation", cliente.Identificacion)),
+                                            new XElement("simpleType",
+                                                new XElement("restriction", "",
+                                                    new XElement("maxLength", "value=12"),
+                                                    new XElement("pattern", ""))));
+
+            XElement bloqueMontoTotalImpuesto = (factura.Descendants("MontoTotalImpuesto").Last());
+            bloqueMontoTotalImpuesto.Add(new XElement("annotation",
+                                             new XElement("documentation", resumen.TotalImpuesto)),
+                                         new XElement("simpleType",
+                                             new XElement("restriction",
+                                                 new XElement("totalDigits"),
+                                                 new XElement("fractionDigits"))));
+
+            XElement bloqueTotalFactura = (factura.Descendants("TotalFactura").Last());
+            bloqueTotalFactura.Add(new XElement("annotation",
+                                       new XElement("documentation", resumen.TotalVenta)),
+                                   new XElement("simpleType",
+                                       new XElement("restriction", "",
+                                           new XElement("totalDigits", "value=18"),
+                                           new XElement("fractionDigits", "value=5"))));
+
+            factura.Save(@"c:\Facturas\factura_" + id + ".xml");
+        }
     }
 
 
