@@ -4,56 +4,63 @@
     ViewData["Title"] = "Lista de reportes";
 }
 
-<h1 class="heading" style="        text-align: center;
+<center>
+    <h1 class="heading" style="        text-align: center;
         margin: -19px 0 0;
         margin-top: 20px;
         color: #B8240A;
 
         font-family: Montserrat;
         font-style: normal;
-        font-size: 64px;
+        font-size: 55px;
         line-height: 78px;
     ">
-    Módulo de reportes
-</h1>
+        Módulo de Reportes
+    </h1>
 
-<center>
     <div>
         <p style="left: auto;">
-            <a asp-action="Agregar" class="btn btn-primary btn-xs" style="font-family: Montserrat;
-        font-style: normal;
-        font-weight: 450;
-        font-size: 25px;
-        color: #D6F5FA;
-        line-height: 44px;
-        background: #B8240A;
-        border: 2px solid #000000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin: 10px;
-    ">Cierre de caja</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <input class="rounded border border-danger" id="name" name="name" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
-            <a asp-action="Agregar" class="btn btn-primary btn-xs"
-               style="font-family: Montserrat;
-        font-style: normal;
-        font-weight: 450;
-        font-size: 25px;
-        color: #D6F5FA;
-        line-height: 44px;
-        background: #B8240A;
-        border: 2px solid #000000;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin: 10px;">Consultar</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <form action="Consultar">
+                <a asp-action="Agregar" class="btn btn-primary btn-xs" style="font-family: Montserrat;
+                     font-style: normal;
+                     font-weight: 400;
+                     font-size: 20px;
+                     color: #D6F5FA;
+                     line-height: 44px;
+                     background: #B8240A;
+                     border: 2px solid #000000;
+                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); ">Cierre de caja</a>
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input class="rounded border border-danger" id="id" name="id" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
+                       style="font-family: Montserrat;
+                       font-style: normal;
+                       font-weight: 400;
+                       font-size: 20px;
+                       color: #D6F5FA;
+                       line-height: 44px;
+                       background: #B8240A;
+                       border: 2px solid #000000;
+                       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                       margin: 10px;">
+
+            </form>
+
+
         </p>
     </div>
 </center>
 
 
 
-<table class="table">
+<table class="table" style="text-align:center ">
     <thead>
-        <tr style="        background-color: paleturquoise;
-        color: #B8240A;
-        ">
+        <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
             <th>
                 @Html.DisplayNameFor(model => model.Fecha)
             </th>
@@ -77,8 +84,8 @@
                     @Html.DisplayFor(modelItem => item.Monto)
                 </td>
                 <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.idCierre }) |
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.idCierre })
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.idCierre }, new { @class = "btn btn-outline-danger" }) 
+                    @Html.ActionLink("Eliminar", "Eliminar", new { id = item.idCierre }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
         }

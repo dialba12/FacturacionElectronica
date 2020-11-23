@@ -11,11 +11,10 @@
 
         font-family: Montserrat;
         font-style: normal;
-        font-size: 64px;
+        font-size: 55px;
         line-height: 78px;
-    " >Modificar</h1>
+    " >Modificar Reporte</h1>
 
-<h4>Cierre</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,10 +22,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group">
-                <label asp-for="Monto" class="rounded border border-danger"  style="        font-family: Montserrat;
-        font-style: normal;
-        font-size: 36px;
+                <label asp-for="Monto" style="        
+        margin: -19px 0 0;
+        margin-top: 20px;
         color: #B8240A;
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 35px;
+        line-height: 78px;
 "></label>
                 <input asp-for="Monto" class="form-control" />
                 <span asp-validation-for="Monto" class="text-danger"></span>
@@ -35,20 +38,22 @@
                 <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
         font-style: normal;
         font-weight: 450;
-        font-size: 25px;
+        font-size: 20px;
         color: #D6F5FA;
         line-height: 44px;
         background: #B8240A;
         border: 2px solid #000000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin: 10px;" />
+        margin: 5px;" />
+                
+                <a asp-action="Listar">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    
 </div>
 
 @section Scripts {
