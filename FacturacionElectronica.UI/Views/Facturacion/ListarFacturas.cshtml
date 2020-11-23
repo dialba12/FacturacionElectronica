@@ -7,7 +7,7 @@
 
 
 <center>
-    <h1 class="heading" style="        text-align: center;
+    <h1 class="heading" style=" text-align: center;
         margin: -19px 0 0;
         margin-top: 20px;
         color: #B8240A;
@@ -21,10 +21,9 @@
     </h1>
 
     <div>
-        <p style="left: auto;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <form action="Consultar">
-                <a asp-action="ListarClientes" class="btn btn-primary btn-xs" style="font-family: Montserrat;
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <form action="ConsultarFactura" style="left: auto;">
+            <a asp-action="ListarClientes" class="btn btn-primary btn-xs" style="font-family: Montserrat;
                      font-style: normal;
                      font-weight: 400;
                      font-size: 20px;
@@ -35,12 +34,12 @@
                      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); ">Agregar</a>
 
 
-                &nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
 
-                <input class="rounded border border-danger" id="id" name="id" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="rounded border border-danger" id="id" name="id" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
 
-                <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
-                       style="font-family: Montserrat;
+            <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
+                   style="font-family: Montserrat;
                        font-style: normal;
                        font-weight: 400;
                        font-size: 20px;
@@ -51,10 +50,10 @@
                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                        margin: 10px;">
 
-            </form>
+        </form>
 
 
-        </p>
+
     </div>
 </center>
 
@@ -64,40 +63,41 @@
     <thead>
         <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
             <th>
+                @Html.DisplayName("Número Consecutivo")
+            </th>
+            <th>
                 @Html.DisplayName("ID Receptor")
             </th>
             <th>
                 @Html.DisplayName("Fecha de emisión")
             </th>
-            <th>
-                @Html.DisplayName("Número consecutivo")
-            </th>
+
 
             <th>
                 @Html.DisplayName("Acciones")
             </th>
 
-            </trstyle=">
-    </thead>
+            </tr >
+</thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idCliente)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaEmision)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumeroConsecutivo)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroConsecutivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEmision)
+            </td>
 
-                <td>
+            <td>
 
-                    @Html.ActionLink("Eliminar", "EliminarFactura", new { id = item.idFactura }, new { @class = "btn btn-outline-danger" })
-                </td>
-            </tr>
+                @Html.ActionLink("Eliminar", "EliminarFactura", new { id = item.idFactura }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

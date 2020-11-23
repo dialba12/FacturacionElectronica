@@ -18,6 +18,7 @@ namespace FacturacionElectronica.BL
 
         public void AgregarCierre(Cierre cierre);
         public List<Cierre> ObtenerCierre();
+        public List<Cierre> ObtenerCierrePorCodigo(int codigo);
         public Cierre ObtenerCierrePorId(int id);
         public void ModificarCierre(int id, Cierre cierre);
         public void EliminarCierre(Cierre id);

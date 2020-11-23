@@ -4,10 +4,19 @@
     ViewData["Title"] = "ConsultarCliente";
 }
 
-<h1>Consultar cliente</h1>
+<h1 style="font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 45px;
+        line-height: 78px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #B8240A;
+">Consultar cliente</h1>
 
 <div>
-    <h4>Cliente</h4>
+   
     <hr />
     <dl class="row">
         
@@ -38,7 +47,8 @@
        
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Seleccionar", "ListarInventario", new { id = Model.idCliente }) 
-    <a asp-action="ListarClientes">Volver</a>
+<div style="text-align:center; align-content:center; align-items:center;">
+    @Html.ActionLink("Seleccionar", "ListarInventario", new { id = Model.idCliente }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Regresar", "ListarClientes", new { id = Model.idCliente }, new { @class = "btn btn-success" })
+    
 </div>

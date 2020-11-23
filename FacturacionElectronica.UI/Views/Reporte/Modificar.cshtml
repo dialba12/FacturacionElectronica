@@ -13,31 +13,34 @@
         font-style: normal;
         font-size: 55px;
         line-height: 78px;
-    " >Modificar Reporte</h1>
+    ">
+    Modificar Reporte
+</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Modificar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
-                <label asp-for="Monto" style="        
+                <label asp-for="Monto" style="
         margin: -19px 0 0;
         margin-top: 20px;
         color: #B8240A;
         font-family: Montserrat;
         font-style: normal;
-        font-size: 35px;
+        font-size: 25px;
         line-height: 78px;
 "></label>
-                <input asp-for="Monto" class="form-control" />
+                <input asp-for="Monto" class="rounded border border-danger" />
                 <span asp-validation-for="Monto" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
+            <center>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
         font-style: normal;
-        font-weight: 450;
+        font-weight: 430;
         font-size: 20px;
         color: #D6F5FA;
         line-height: 44px;
@@ -45,15 +48,15 @@
         border: 2px solid #000000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         margin: 5px;" />
-                
-                <a asp-action="Listar">Cancelar</a>
-            </div>
+
+                </div>
+            </center>
         </form>
     </div>
 </div>
 
 <div>
-    
+
 </div>
 
 @section Scripts {

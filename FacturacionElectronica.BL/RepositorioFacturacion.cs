@@ -85,6 +85,13 @@ namespace FacturacionElectronica.BL
             cierre = elContextoDeBaseDeDatos.Cierre.Find(id);
             return cierre;
         }
+        public List<Cierre> ObtenerCierrePorCodigo(int codigo)
+        {
+            var resultado = from listaCierre in elContextoDeBaseDeDatos.Cierre
+                            where listaCierre.idCierre == codigo
+                            select listaCierre;
+            return resultado.ToList();
+        }
         public void ModificarCierre(int id, Cierre cierre)
         {
             Cierre cierrePorModificar = ObtenerCierrePorId(id);
@@ -335,6 +342,8 @@ namespace FacturacionElectronica.BL
 
             factura.Save(@"c:\Facturas\factura_" + id + ".xml");
         }
+
+        
     }
 
 

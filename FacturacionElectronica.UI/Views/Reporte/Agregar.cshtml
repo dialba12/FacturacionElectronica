@@ -13,7 +13,9 @@
         font-style: normal;
         font-size: 64px;
         line-height: 78px;
-    " >Añadir inventario</h1>
+    ">
+    Añadir inventario
+</h1>
 
 <hr />
 <div class="row">
@@ -21,7 +23,7 @@
         <form asp-action="Agregar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Monto" class="control-label"  style="        font-family: Montserrat;
+                <label asp-for="Monto" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
         font-size: 36px;
         color: #B8240A;
@@ -29,8 +31,9 @@
                 <input asp-for="Monto" class="rounded border border-danger" />
                 <span asp-validation-for="Monto" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
+            <center>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
         font-style: normal;
         font-weight: 450;
         font-size: 25px;
@@ -39,8 +42,9 @@
         background: #B8240A;
         border: 2px solid #000000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        margin: 10px;"/>
-            </div>
+        margin: 10px;" />
+                </div>
+            </center>
         </form>
     </div>
 </div>

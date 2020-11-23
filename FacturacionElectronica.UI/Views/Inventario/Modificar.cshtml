@@ -13,18 +13,20 @@
         font-style: normal;
         font-size: 64px;
         line-height: 78px;
-    ">Modificar inventario</h1>
+    ">
+    Modificar inventario
+</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Modificar">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+
             <div class="form-group">
                 <label asp-for="Codigo" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
                 <input asp-for="Codigo" class="rounded border border-danger" />
@@ -33,7 +35,7 @@
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
                 <input asp-for="Descripcion" class="rounded border border-danger" />
@@ -42,7 +44,7 @@
             <div class="form-group">
                 <label asp-for="PrecioCosto" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
                 <input asp-for="PrecioCosto" class="rounded border border-danger" />
@@ -51,7 +53,7 @@
             <div class="form-group">
                 <label asp-for="PrecioVenta" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
                 <input asp-for="PrecioVenta" class="rounded border border-danger" />
@@ -60,24 +62,26 @@
             <div class="form-group">
                 <label asp-for="Existencia" class="control-label" style="        font-family: Montserrat;
         font-style: normal;
-        font-size: 36px;
+        font-size: 20px;
         color: #B8240A;
 "></label>
                 <input asp-for="Existencia" class="rounded border border-danger" />
                 <span asp-validation-for="Existencia" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary"  style="font-family: Montserrat;
+            <center>
+                <div class="form-group">
+                    <input type="submit" value="Guardar" class="btn btn-primary" style="font-family: Montserrat;
         font-style: normal;
         font-weight: 450;
-        font-size: 25px;
+        font-size: 15px;
         color: #D6F5FA;
         line-height: 44px;
         background: #B8240A;
         border: 2px solid #000000;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         margin: 10px;" />
-            </div>
+                </div>
+            </center>
         </form>
     </div>
 </div>

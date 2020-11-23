@@ -12,14 +12,16 @@
 
         font-family: Montserrat;
         font-style: normal;
-        font-size: 64px;
+        font-size: 45px;
         line-height: 78px;
-    " >Estás seguro de eliminar el  reporte @Html.DisplayFor(model => model.idCierre) ?</h3>
-
+    ">
+    Estás seguro de eliminar el  reporte @Html.DisplayFor(model => model.idCierre) ?
+</h3>
+</dl>
 <div>
-    </dl>
 
-    <form asp-action="Eliminar">
+
+    <form asp-action="Eliminar" style="text-align:center; align-content:center; align-items:center;">
         <input type="submit" value="Si" class="btn btn-danger" />
         <a asp-action="Listar" class="btn btn-success">No</a>
     </form>

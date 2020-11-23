@@ -19,10 +19,10 @@
     </h1>
 
     <div>
-        <p style="left: auto;">
+        
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <form action="Consultar">
-                <a asp-action="Agregar" class="btn btn-primary btn-xs" style="font-family: Montserrat;
+            <form action="Consultar"  style="left: auto;">
+                <a href='/Identity/Account/Register' class="btn btn-primary btn-xs" style="font-family: Montserrat;
                      font-style: normal;
                      font-weight: 400;
                      font-size: 20px;
@@ -35,7 +35,7 @@
 
                 &nbsp;&nbsp;&nbsp;&nbsp;
 
-                <input class="rounded border border-danger" id="id" name="id" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="rounded border border-danger" id="identificacion" name="identificacion" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
                        style="font-family: Montserrat;
@@ -52,7 +52,7 @@
             </form>
 
 
-        </p>
+      
     </div>
 </center>
 
@@ -62,17 +62,18 @@
     <thead>
         <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
             <th>
-                @Html.DisplayName("Nombre")
+                @Html.DisplayName("Identificación:")
             </th>
             <th>
-                @Html.DisplayName("Primer Apellido")
+                @Html.DisplayName("Nombre:")
             </th>
             <th>
-                @Html.DisplayName("Segundo Apellido")
+                @Html.DisplayName("Primer Apellido:")
             </th>
             <th>
-                @Html.DisplayName("Usuario")
+                @Html.DisplayName("Segundo Apellido:")
             </th>
+
             <th>
                 @Html.DisplayName("Acciones")
             </th>
@@ -84,6 +85,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
@@ -92,12 +96,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SegundoApellido)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
+
 
                 <td>
-                    @Html.ActionLink("Modificar", "Modificar", new { id = item.Id }, new { @class = "btn btn-outline-danger" }) 
+                    @Html.ActionLink("Modificar", "Modificar", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
                     @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>

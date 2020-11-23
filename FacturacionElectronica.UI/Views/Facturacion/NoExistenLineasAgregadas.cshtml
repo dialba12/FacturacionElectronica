@@ -2,8 +2,17 @@
     ViewData["Title"] = "NoExisteInventario";
 }
 
-<h1>Aún no se han agregado productos a la factura</h1>
+<h1  class="heading" style="        text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
+        color: #B8240A;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 64px;
+        line-height: 78px;
+    ">Aún no se han agregado productos a la factura</h1>
 
 <div>
-    @Html.ActionLink("Regresar", "ListarInventario", new { idFactura = TempData["idFactura"] })
+    @Html.ActionLink("Regresar", "ListarInventario", new { idFactura = TempData["idFactura"] } , new { @class = "btn btn-outline-danger" })
 </div>

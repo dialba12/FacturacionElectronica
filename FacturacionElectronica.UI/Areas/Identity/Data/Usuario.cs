@@ -20,18 +20,19 @@ namespace FacturacionElectronica.UI.Areas.Identity.Data
 
         [Required(ErrorMessage = "Ingrese su primer apellido")]
         [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco")]
-        [Display(Name = "PrimerApellido:")]
+        [Display(Name = "Primer Apellido:")]
       
         public string PrimerApellido { get; set; }
         [Required(ErrorMessage = "Ingrese su segundo apellido")]
         [RegularExpression(@"^\w+$", ErrorMessage = "No se permiten espacios en blanco")]
-        [Display(Name = "SegundoApellido:")]
+        [Display(Name = "Segundo Apellido:")]
      
         public string SegundoApellido { get; set; }
         
         [Display(Name = "Identificacion:")]
 
         public int Identificacion { get; set; }
+        [Display(Name = "Tipo de Identificacion:")]
         public TipoDeIdentificacion TipoDeIdentificacion { get; set; }
         
         [Display(Name = "Provincia:")]

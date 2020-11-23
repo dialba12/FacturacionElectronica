@@ -72,7 +72,31 @@ namespace FacturacionElectronica.UI.Controllers
                 return View();
             }
         }
+        public ActionResult Consultar(int codigo)
 
+        {
+            List<Cierre> ListaDeCierre;
+            ListaDeCierre = Repositorio.ObtenerCierrePorCodigo(codigo);
+
+            Cierre cierre;
+
+
+            if (ListaDeCierre.Count.Equals(0))
+            {
+                return RedirectToAction("NoExisteCierre", "Reporte");
+            }
+            else
+            {
+                cierre = ListaDeCierre.First();
+            }
+            return View(cierre);
+        }
+        public ActionResult NoExisteCierre(int id)
+
+        {
+
+            return View();
+        }
         public ActionResult Eliminar(int id)
         {
             Cierre cierre;
