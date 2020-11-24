@@ -5,7 +5,7 @@
 }
 
 
-<h3  class="heading" style="        text-align: center;
+<h3 class="heading" style="        text-align: center;
         margin: -19px 0 0;
         margin-top: 20px;
         color: #B8240A;
@@ -14,10 +14,12 @@
         font-style: normal;
         font-size: 45px;
         line-height: 78px;
-    "  >Estás seguro de eliminar la factura  @Html.DisplayFor(model => model.idFactura) ?</h3>
+    ">
+    Estás seguro de eliminar la factura  @Html.DisplayFor(model => model.idFactura) ?
+</h3>
 
 <div>
-    </dl>
+
 
     <form asp-action="EliminarFactura" style="text-align:center; align-content:center; align-items:center;">
         <input type="submit" value="Si" class="btn btn-danger" />

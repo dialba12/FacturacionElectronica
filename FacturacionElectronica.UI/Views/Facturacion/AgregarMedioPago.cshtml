@@ -1,12 +1,21 @@
 ﻿@model FacturacionElectronica.Modelos.ResumenDeCompra
 
-@{
-    ViewData["Title"] = "AgregarMedioPago";
-}
+@{ ViewData["Title"] = "AgregarMedioPago"; }
 
-<h1 style="text-align: center">Resumen de compra  @TempData["idFactura"]</h1>
+<h1 class="heading" style="        text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
+        color: #B8240A;
 
-<h6> Fecha: @Html.DisplayFor(model => model.fecha.Date)</h6>
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 55px;
+        line-height: 78px;
+    ">
+    Resumen de compra  @TempData["idFactura"]
+</h1>
+
+<h6> Fecha: @Html.DisplayFor(model => model.fecha)</h6>
 <h6> Cliente: @Html.DisplayFor(model => model.cliente)</h6>
 <h6> Consecutivo: @Html.DisplayFor(model => model.consecutivo)</h6>
 
@@ -14,7 +23,7 @@
 
 <table class="table">
     <thead>
-        <tr style="text-align:center; background-color: gainsboro;  font-size:medium; color:black">
+        <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
             <th>
                 @Html.DisplayName("Linea")
             </th>
@@ -36,34 +45,31 @@
     <tbody>
         @foreach (var item in Model.lineasDetalle)
         {
-            <tr style="text-align:center">
-                <td>
-                    @Html.DisplayFor(modelItem => item.idLineaDetalle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Detalle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioUnitario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Subtotal)
-                </td>
-            </tr>
-        }
+<tr style=" text-align:center ">
+    <td>
+        @Html.DisplayFor(modelItem => item.idLineaDetalle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cantidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Detalle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PrecioUnitario)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Subtotal)
+    </td>
+</tr>}
     </tbody>
 </table>
 
 
 <h6> Total Impuestos: @Html.DisplayFor(model => model.TotalImpuestos)</h6>
 <h6> Total: @Html.DisplayFor(model => model.Total)</h6>
-<br />
-<hr />
 
-<br />
+<hr />
 
 <div class="row">
     <div class="col-md-4">
@@ -71,13 +77,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-               
+
                 <input asp-for="idFactura" value=@TempData["idFactura"] type="hidden" class="form-control" />
-               
+
             </div>
 
             <div class="form-group">
-                <label asp-for="CondicionVenta" class="control-label"></label>
+                <label asp-for="CondicionVenta" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 20px;
+        color: #B8240A;
+"></label>
                 <select id="CondicionVenta" name="CondicionVenta">
                     <option value="Contado">Contado</option>
                     <option value="Crédito">Crédito</option>
@@ -93,7 +103,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="MedioPago" class="control-label"></label>
+                <label asp-for="MedioPago" class="control-label" style="        font-family: Montserrat;
+        font-style: normal;
+        font-size: 20px;
+        color: #B8240A;
+"></label>
                 <select id="MedioPago" name="MedioPago">
                     <option value="Efectivo">Efectivo</option>
                     <option value="Tarjeta">Tarjeta</option>
@@ -104,13 +118,13 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Generar Factura" class="btn btn-primary" />
-                @Html.ActionLink("Cancelar", "ListarInventario", new { idFactura = TempData["idFactura"] })
+                <input type="submit" value="Generar Factura" class="btn btn-outline-success" />
+                @Html.ActionLink("Cancelar", "ListarInventario", new { idFactura = TempData["idFactura"] }, new { @class = "btn btn-outline-success" })
             </div>
         </form>
     </div>
 
-   
+
 </div>
 
 @section Scripts {

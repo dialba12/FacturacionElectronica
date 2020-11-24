@@ -49,8 +49,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;
 
     <input class="rounded border border-danger" id="codigo" name="codigo" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
+    <input class="rounded border border-danger" value="@TempData["idFactura"]" id="idFactura" name="idFactura" required size="40" type="hidden">&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" value="Buscar" class="btn btn-primary btn-xs"
            style="font-family: Montserrat;
                        font-style: normal;
                        font-weight: 400;
@@ -76,7 +76,7 @@
             <th>
                 @Html.DisplayName("Código")
             </th>
-         
+
             <th>
                 @Html.DisplayName("Cant")
             </th>
@@ -98,30 +98,30 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Existencia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrecioVenta)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Existencia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
 
 
 
 
 
-            <td>
-                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = item.idInventario }, new { @class = "btn btn-outline-danger" })
-            </td>
+                <td>
+                    @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = item.idInventario }, new { @class = "btn btn-outline-danger" })
+                </td>
 
 
-        </tr>
+            </tr>
         }
     </tbody>
 </table>

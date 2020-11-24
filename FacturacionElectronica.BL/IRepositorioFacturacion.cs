@@ -41,6 +41,7 @@ namespace FacturacionElectronica.BL
         public List<LineaDetalle> ObtenerLineas(int id);
 
         public void AgregarResumen(ResumenFactura resumen);
+        public ResumenFactura ObtenerResumen(int idResumen);
         public List<ResumenFactura> ObtenerResumenes();
 
         public void GenerarXml(int id);

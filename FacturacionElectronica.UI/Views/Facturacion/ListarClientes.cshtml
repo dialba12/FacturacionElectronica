@@ -80,26 +80,26 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Identificacion)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificacion)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrimerApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegundoApellido)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrimerApellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SegundoApellido)
+                </td>
 
-            <td>
-                @Html.ActionLink("Seleccionar", "AgregarFactura", new { idCliente = item.idCliente }, new { @class = "btn btn-outline-danger" })
-            </td>
-        </tr>
+                <td>
+                    @Html.ActionLink("Seleccionar", "AgregarFactura", new { idCliente = item.idCliente }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
         }
     </tbody>
 </table>

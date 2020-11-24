@@ -45,6 +45,10 @@ namespace FacturacionElectronica.UI.Controllers
 
             Factura factura;
 
+            ConsultarFactura DatosAEnviar = new ConsultarFactura();
+            ResumenFactura resumen;
+
+
 
             if (ListaDeFacturas.Count.Equals(0))
             {
@@ -52,12 +56,25 @@ namespace FacturacionElectronica.UI.Controllers
             }
             else
             {
-               
-                factura = ListaDeFacturas.First( ); 
+
+                factura = ListaDeFacturas.First();
                 if (factura.idResumen == 0) { return RedirectToAction("NoExisteFactura", "Facturacion"); }
-             
+                resumen = Repositorio.ObtenerResumen(factura.idResumen);
+                DatosAEnviar.idFactura = factura.idFactura;
+                DatosAEnviar.NumeroConsecutivo = factura.NumeroConsecutivo;
+                DatosAEnviar.FechaEmision = factura.FechaEmision;
+                DatosAEnviar.idUsuario = factura.idUsuario;
+                DatosAEnviar.idCliente = factura.idCliente;
+                DatosAEnviar.CondicionVenta = factura.CondicionVenta;
+                DatosAEnviar.MedioPago = factura.MedioPago;
+                DatosAEnviar.Subtotal = resumen.TotalComprobante;
+                DatosAEnviar.TotalImpuesto = resumen.TotalImpuesto;
+                DatosAEnviar.TotalFactura = resumen.TotalVenta;
+
+
+
             }
-            return View(factura);
+            return View(DatosAEnviar);
         }
         public ActionResult NoExisteFactura()
 
@@ -99,7 +116,7 @@ namespace FacturacionElectronica.UI.Controllers
 
             if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
             else
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion"); }
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
 
             return View(ListaDeClientes);
         }
@@ -140,13 +157,15 @@ namespace FacturacionElectronica.UI.Controllers
             TempData["idFactura"] = idFactura;
             ViewBag.idFactura = idFactura;
 
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion", new { @idFactura = idFactura }); }
 
             return View(ListaDeInventario);
         }
-        public ActionResult ConsultarInventario(int codigo)
+        public ActionResult ConsultarInventario(int codigo, int idFactura)
 
         {
+            TempData["idFactura"] = idFactura;
+
             List<Inventario> ListaDeInventario;
             ListaDeInventario = Repositorio.ObtenerInventarioPorCodigo(codigo);
 
@@ -315,7 +334,7 @@ namespace FacturacionElectronica.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AgregarMedioPago(ResumenDeCompra valores)
         {
-          
+
             return RedirectToAction("GenerarFactura", "Facturacion", new { @idFactura = valores.idFactura, @MedioPago = valores.MedioPago, @condicion = valores.CondicionVenta });
 
         }

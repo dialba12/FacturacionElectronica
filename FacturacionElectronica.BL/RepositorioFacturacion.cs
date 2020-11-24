@@ -210,6 +210,14 @@ namespace FacturacionElectronica.BL
             elContextoDeBaseDeDatos.ResumenFactura.Add(resumen);
             elContextoDeBaseDeDatos.SaveChanges();
         }
+
+        public ResumenFactura ObtenerResumen(int idResumen)
+        {
+            ResumenFactura resumen;
+            resumen = elContextoDeBaseDeDatos.ResumenFactura.Find(idResumen);
+            return resumen;
+        }
+
         public List<ResumenFactura> ObtenerResumenes()
         {
             List<ResumenFactura> ListaDeResumenes;

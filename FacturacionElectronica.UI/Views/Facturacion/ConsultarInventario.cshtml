@@ -4,46 +4,54 @@
     ViewData["Title"] = "ConsultarInventario";
 }
 
-<h1  style="font-family: Montserrat;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 45px;
-        line-height: 78px;
-        display: flex;
-        align-items: center;
-        text-align: center;
+<center>
+    <h1 class="heading" style=" text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
         color: #B8240A;
-">Consultar inventario</h1>
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 55px;
+        line-height: 78px;
+    ">
+        Consulta de inventario
+    </h1>
+</center>
 
 <div>
-    
-    <hr />
+
     <dl class="row">
-        
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Codigo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Codigo)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descripcion)
-       
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PrecioVenta)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PrecioVenta)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Existencia)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Existencia)
         </dd>
     </dl>
 </div>
+<center>
 
+    @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = Model.idInventario }, new { @class = "btn btn-outline-success" })
+    @Html.ActionLink("Regresar", "ListarInventario", new { idFactura = TempData["idFactura"] }, new { @class = "btn btn-outline-success" })
+
+</center>

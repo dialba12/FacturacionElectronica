@@ -1,73 +1,93 @@
-﻿@model FacturacionElectronica.Modelos.Factura
+﻿@model FacturacionElectronica.Modelos.ConsultarFactura
 
 @{
     ViewData["Title"] = "Consultar";
 }
 
-<h1  style="font-family: Montserrat;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 45px;
-        line-height: 78px;
-        display: flex;
-        align-items: center;
-        text-align: center;
+<center>
+    <h1 class="heading" style=" text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
         color: #B8240A;
-">Consultar factura</h1>
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 55px;
+        line-height: 78px;
+    ">
+        Consulta de factura
+    </h1>
+
+</center>
 
 <div>
-    
-    <hr />
+
+
     <dl class="row">
-        
-        
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumeroConsecutivo)
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayName("Número consecutivo:")
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.NumeroConsecutivo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaEmision)
+        <dt class="col-sm-2">
+            @Html.DisplayName("Fecha de emisión:")
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FechaEmision)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idUsuario)
+
+        <dt class="col-sm-2">
+            @Html.DisplayName("Identificación del cliente:")
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idCliente)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.idCliente)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CondicionVenta)
+
+        <dt class="col-sm-2">
+            @Html.DisplayName("Identificación del emisor:")
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.idCliente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Condición de venta:")
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CondicionVenta)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MedioPago)
+        <dt class="col-sm-2">
+            @Html.DisplayName("Medio de pago:")
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MedioPago)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idResumen)
+        <dt class="col-sm-2">
+            @Html.DisplayName("Subtotal:")
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idResumen)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Subtotal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayName("Total de impuestos")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalImpuesto)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayName("Total:")
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalFactura)
         </dd>
     </dl>
 </div>
-<<div style="text-align:center; align-content:center; align-items:center;">
-    @Html.ActionLink("Modificar", "Modificar", new { id = Model.Clave }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Eliminar", "Eliminar", new { id = Model.Clave }, new { @class = "btn btn-danger" })
-    @Html.ActionLink("Regresar", "ListarFacturas", new { id = Model.Clave }, new { @class = "btn btn-success" })
-   
+
+<div style="text-align:center; align-content:center; align-items:center;">
+    @Html.ActionLink("Eliminar", "EliminarFactura", new { id = Model.idFactura }, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Regresar", "ListarFacturas", new { id = Model.idCliente }, new { @class = "btn btn-success" })
+
 </div>

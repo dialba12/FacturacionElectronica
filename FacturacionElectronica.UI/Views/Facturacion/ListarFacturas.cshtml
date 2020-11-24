@@ -77,27 +77,27 @@
                 @Html.DisplayName("Acciones")
             </th>
 
-            </tr >
-</thead>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroConsecutivo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaEmision)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroConsecutivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEmision)
+                </td>
 
-            <td>
+                <td>
 
-                @Html.ActionLink("Eliminar", "EliminarFactura", new { id = item.idFactura }, new { @class = "btn btn-outline-danger" })
-            </td>
-        </tr>
+                    @Html.ActionLink("Eliminar", "EliminarFactura", new { id = item.idFactura }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
         }
     </tbody>
 </table>
