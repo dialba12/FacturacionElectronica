@@ -52,7 +52,10 @@ namespace FacturacionElectronica.UI.Controllers
             }
             else
             {
-                factura = ListaDeFacturas.First();
+               
+                factura = ListaDeFacturas.First( ); 
+                if (factura.idResumen == 0) { return RedirectToAction("NoExisteFactura", "Facturacion"); }
+             
             }
             return View(factura);
         }
