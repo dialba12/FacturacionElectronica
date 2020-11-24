@@ -4,21 +4,64 @@
     ViewData["Title"] = "Listar";
 }
 
-<h1>Seleccionar Cliente </h1>
+<center>
+    <h1 class="heading" style="        text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
+        color: #B8240A;
+
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 55px;
+        line-height: 78px;
+    ">
+        Seleccionar Cliente
+    </h1>
+
+    <div>
+
+        <form action="ConsultarCliente" style="left: auto;">
+            <a asp-action="Agregar" asp-controller="Cliente" class="btn btn-primary btn-xs" style="font-family: Montserrat;
+                     font-style: normal;
+                     font-weight: 400;
+                     font-size: 20px;
+                     color: #D6F5FA;
+                     line-height: 44px;
+                     background: #B8240A;
+                     border: 2px solid #000000;
+                     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); ">Añadir</a>
 
 
-@Html.ActionLink("Añadir", "Agregar","Cliente"  , new { /* id=item.PrimaryKey */ })
-<form action="ConsultarCliente">
+            &nbsp;&nbsp;&nbsp;&nbsp;
 
-    <input type="number" name="id" id="id">
+            <input class="rounded border border-danger" id="codigo" name="codigo" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <p><input type="submit" value="Consultar"></p>
-</form>
-<table class="table">
+            <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
+                   style="font-family: Montserrat;
+                       font-style: normal;
+                       font-weight: 400;
+                       font-size: 20px;
+                       color: #D6F5FA;
+                       line-height: 44px;
+                       background: #B8240A;
+                       border: 2px solid #000000;
+                       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                       margin: 10px;">
+
+        </form>
+    </div>
+</center>
+
+
+
+
+<table class="table" style="text-align:center ">
     <thead>
-        <tr>
+        <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
 
-
+            <th>
+                @Html.DisplayName("Identificación")
+            </th>
             <th>
                 @Html.DisplayName("Nombre")
             </th>
@@ -39,7 +82,9 @@
         {
         <tr>
 
-
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -52,7 +97,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Seleccionar", "AgregarFactura", new { idCliente = item.idCliente})
+                @Html.ActionLink("Seleccionar", "AgregarFactura", new { idCliente = item.idCliente }, new { @class = "btn btn-outline-danger" })
             </td>
         </tr>
         }

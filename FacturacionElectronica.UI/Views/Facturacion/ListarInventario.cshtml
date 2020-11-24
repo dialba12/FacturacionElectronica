@@ -7,26 +7,76 @@
 @{
 
 }
-<h1>Selección de Productos</h1>
+<h1 class="heading" style="        text-align: center;
+        margin: -19px 0 0;
+        margin-top: 20px;
+        color: #B8240A;
 
-<p>
-    @Html.ActionLink("Procesar Factura", "AgregarMedioPago", new { idFactura = TempData["idFactura"] })
+        font-family: Montserrat;
+        font-style: normal;
+        font-size: 55px;
+        line-height: 78px;
+    ">
+    Selección de Productos
+</h1>
 
-</p>
-<form action="ConsultarInventario">
 
-    <input type="number" name="codigo" id="codigo">
+<form action="AgregarMedioPago" style="left: auto;">
 
-    <p><input type="submit" value="Consultar"></p>
+
+
+    <input class="rounded border border-danger" value="@TempData["idFactura"]" id="idFactura" name="idFactura" required size="40" type="hidden">
+
+    <input type="submit" value="Procesar Factura" class="btn btn-primary btn-xs"
+           style="font-family: Montserrat;
+                       font-style: normal;
+                       font-weight: 400;
+                       font-size: 18px;
+                       color: #D6F5FA;
+                       line-height: 44px;
+                       background: #B8240A;
+                       border: 2px solid #000000;
+                       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                       margin: 10px;">
+
+
+</form>
+
+<form action="ConsultarInventario" style="left: auto;">
+
+
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <input class="rounded border border-danger" id="codigo" name="codigo" required size="40">&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <input type="submit" value="Consultar" class="btn btn-primary btn-xs"
+           style="font-family: Montserrat;
+                       font-style: normal;
+                       font-weight: 400;
+                       font-size: 20px;
+                       color: #D6F5FA;
+                       line-height: 44px;
+                       background: #B8240A;
+                       border: 2px solid #000000;
+                       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                       margin: 10px;">
+
+
 </form>
 
 
 
-<table class="table">
+
+
+<table class="table" style="text-align:center ">
     <thead>
-        <tr>
+        <tr style="  background-color: paleturquoise;   color: #B8240A; text-align:center ">
 
-
+            <th>
+                @Html.DisplayName("Código")
+            </th>
+         
             <th>
                 @Html.DisplayName("Cant")
             </th>
@@ -39,7 +89,7 @@
 
 
             <th>
-                
+
             </th>
 
 
@@ -49,6 +99,9 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Existencia)
             </td>
@@ -64,7 +117,7 @@
 
 
             <td>
-                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = item.idInventario })
+                @Html.ActionLink("Seleccionar", "AgregarCantidadUnidad", new { idFactura = TempData["idFactura"], idInventario = item.idInventario }, new { @class = "btn btn-outline-danger" })
             </td>
 
 
