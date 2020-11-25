@@ -12,16 +12,16 @@
     ">
     No existen unidades de este producto en el inventario
 </h1>
+<center>
+    <div>
+        <form action="ListarInventario" style="left: auto;">
 
-<div>
-    <form action="ListarInventario" style="left: auto;">
 
 
+            <input class="rounded border border-danger" value="@TempData["idFactura"]" id="idFactura" name="idFactura" required size="40" type="hidden">
 
-        <input class="rounded border border-danger" value="@TempData["idFactura"]" id="idFactura" name="idFactura" required size="40" type="hidden">
-
-        <input type="submit" value="Regresar" class="btn btn-primary btn-xs"
-               style="font-family: Montserrat;
+            <input type="submit" value="Regresar" class="btn btn-primary btn-xs"
+                   style="font-family: Montserrat;
         font-style: normal;
         font-weight: 400;
         font-size: 25px;
@@ -33,7 +33,8 @@
         margin: 10px;">
 
 
-    </form>
+        </form>
 
 
-</div>
+    </div>
+</center>

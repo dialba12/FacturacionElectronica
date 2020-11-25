@@ -116,7 +116,7 @@ namespace FacturacionElectronica.UI.Controllers
 
             if (ListaDeClientes.Count.Equals(0)) { return RedirectToAction("NoExistenClientes", "Facturacion"); }
             else
-            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExisteInventario", "Facturacion"); }
+            if (ListaDeInventario.Count.Equals(0)) { return RedirectToAction("NoExistenInventarios", "Facturacion"); }
 
             return View(ListaDeClientes);
         }
@@ -174,7 +174,7 @@ namespace FacturacionElectronica.UI.Controllers
 
             if (ListaDeInventario.Count.Equals(0))
             {
-                return RedirectToAction("NoExisteInventario", "Facturacion");
+                return RedirectToAction("NoExisteInventario", "Facturacion", new { idFactura });
             }
             else
             {
@@ -182,19 +182,17 @@ namespace FacturacionElectronica.UI.Controllers
             }
             return View(inventario);
         }
-        public ActionResult NoExisteInventario(int id)
+        public ActionResult NoExisteInventario(int idFactura)
 
         {
+            TempData["idFactura"] = idFactura;
             return View();
         }
         public ActionResult NoExistenInventarios()
         {
             return View();
         }
-        public ActionResult NoExisteInventario()
-        {
-            return View();
-        }
+       
         public ActionResult AgregarFactura(int idCliente)
         {
             Factura factura = new Factura();
